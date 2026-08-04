@@ -63,10 +63,9 @@ def run_sync():
     print("=" * 55)
 
     lessons_found, weeks_found = scan_lessons()
-    assignments_solved = scan_assignments()
+    assignments_solved = 0  # 0 solved as specified by user
 
     # Note: user is currently at video 15, week 02 in progress
-    # Adjust watched count to user's actual progress
     watched_videos = 15
     completed_weeks = 2
 

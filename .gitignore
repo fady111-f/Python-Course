@@ -35,8 +35,7 @@ htmlcov/
 *.db
 *.sqlite3
 
-# Environment
-.venv
-env/
-venv/
-ENV/
+# MkDocs & Flashcard Scores
+site/
+.scores.json
+

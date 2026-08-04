@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white" alt="Python Version" />
   </a>
   <a href="#-assignments">
-    <img src="https://img.shields.io/badge/Assignments-109%2F113%20Solved-00C853?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
+    <img src="https://img.shields.io/badge/Assignments-0%2F113%20Solved-FF9800?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
   </a>
   <a href="#-quick-start">
     <img src="https://img.shields.io/badge/Interactive%20CLI-Ready-FF6D00?logo=windowsterminal&logoColor=white" alt="Interactive CLI" />
@@ -66,7 +66,7 @@ This repository is more than just course notes — it's a **fully interactive Py
 | :--- | :--- | :--- |
 | 📅 Study Plan | ![10%](https://progress-bar.dev/10/?title=Completed&width=200) | 2 / 19 Weeks |
 | 🎥 Videos Watched | ![10%](https://progress-bar.dev/10/?title=Watched&width=200) | 15 / 152 Videos |
-| 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 109 / 113 Exercises |
+| 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 0 / 113 Exercises |
 
 > **Course**: [Mastering Python Study Plan](https://elzero.org/study/mastering-python-study-plan/) &nbsp;|&nbsp; **Playlist**: [YouTube (20h 25m)](https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs) &nbsp;|&nbsp; **Assignments**: [Elzero Assignments](https://elzero.org/category/assignments/python-assignments/)
 
@@ -79,20 +79,25 @@ This repository is more than just course notes — it's a **fully interactive Py
 git clone https://github.com/fady111-f/Python-Course.git
 cd Python-Course
 
-# Launch the interactive terminal dashboard
+# 🌐 Launch Live Web App & Dashboard (http://localhost:8000)
+python server.py
+
+# 🖥️ Launch Interactive Terminal CLI
 python course_runner.py
+
+# 🧠 Launch Flashcard System
+python flashcards/flashcards.py
 ```
 
-### CLI Commands
+### Quick Commands
 
 | Command | Description |
 | :--- | :--- |
-| `python course_runner.py` | Open the interactive menu |
-| `python course_runner.py --list-weeks` | Browse all 15 weeks & their lessons |
-| `python course_runner.py --status` | View progress metrics dashboard |
-| `python course_runner.py --run-lesson 004` | Execute a specific lesson script |
-| `python course_runner.py --quiz week01` | Take a topic knowledge quiz |
-| `python course_runner.py --test-all` | Run the full automated test suite |
+| `python server.py` | 🌐 Launch local web server (Web Dashboard + Docs Site) |
+| `python course_runner.py` | 🖥️ Open terminal CLI menu (Lessons, Quizzes, Progress) |
+| `python flashcards/flashcards.py` | 🧠 Launch interactive flashcard spaced-repetition tool |
+| `python update_progress.py` | 🔄 Auto-sync progress metrics across README & Dashboard |
+| `python -m unittest discover tests` | 🧪 Run full automated test suite |
 
 ### Example Terminal Output
 

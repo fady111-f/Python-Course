@@ -488,34 +488,41 @@
                     </div>
                 </div>
                 <div class="progress-title">Assignments</div>
-                <div class="progress-detail">109 / 113 Solved</div>
+                <div class="progress-detail">0 / 113 Solved</div>
             </div>
         </section>
 
         <!-- Quick Links -->
         <h2 class="section-title">⚡ Quick Access</h2>
         <div class="features-grid">
-            <a class="feature-card" href="../cheatsheets/01_fundamentals.md">
-                <div class="feature-icon">📋</div>
-                <h3>Cheat Sheets</h3>
-                <p>Quick reference guides for each topic covered</p>
+            <a class="feature-card" href="../docs/cheatsheets/01_fundamentals/" id="linkDocs">
+                <div class="feature-icon">📚</div>
+                <h3>Docs & Cheat Sheets</h3>
+                <p>Full MkDocs Material documentation & topic cheat sheets</p>
             </a>
             <a class="feature-card" href="../projects/">
                 <div class="feature-icon">🚀</div>
                 <h3>Mini Projects</h3>
-                <p>Hands-on projects that reinforce every 5 videos</p>
+                <p>Hands-on projects reinforcing every 5 videos</p>
             </a>
-            <a class="feature-card" href="../flashcards/flashcards.py">
+            <a class="feature-card" href="javascript:void(0)" onclick="alert('Run `python flashcards/flashcards.py` in your terminal to start flashcards!')">
                 <div class="feature-icon">🧠</div>
-                <h3>Flashcards</h3>
-                <p>Spaced repetition CLI for memorizing concepts</p>
+                <h3>Flashcard CLI</h3>
+                <p>Spaced repetition CLI tool for memorizing concepts</p>
             </a>
-            <a class="feature-card" href="../course_runner.py">
+            <a class="feature-card" href="javascript:void(0)" onclick="alert('Run `python course_runner.py` in your terminal to open CLI runner!')">
                 <div class="feature-icon">🖥️</div>
                 <h3>Course CLI</h3>
-                <p>Interactive terminal dashboard to run lessons</p>
+                <p>Interactive terminal dashboard to run lessons & quizzes</p>
             </a>
         </div>
+        <script>
+            // Adapt docs link if served over HTTP
+            if (window.location.protocol.startsWith('http')) {
+                const docsLink = document.getElementById('linkDocs');
+                if (docsLink) docsLink.href = '/docs/';
+            }
+        </script>
 
         <!-- Weeks -->
         <h2 class="section-title">📚 Course Weeks</h2>
