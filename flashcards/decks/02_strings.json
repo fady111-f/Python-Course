@@ -1,0 +1,128 @@
+{
+  "id": "02_strings",
+  "name": "Strings & Methods",
+  "description": "String indexing, slicing, and methods (Videos 11-15)",
+  "cards": [
+    {
+      "question": "What is the index of the first character in a Python string?",
+      "answer": "0",
+      "hint": "Python uses zero-based indexing",
+      "explanation": "Strings are zero-indexed: \"Hello\"[0] → 'H'"
+    },
+    {
+      "question": "How do you access the LAST character of a string using negative indexing?",
+      "answer": "string[-1]",
+      "hint": "Negative numbers count from the end",
+      "explanation": "\"Hello\"[-1] → 'o'. Negative indexing starts from -1 at the end."
+    },
+    {
+      "question": "What does \"Python\"[1:4] return?",
+      "answer": "yth",
+      "hint": "The end index is exclusive",
+      "explanation": "Slicing [start:end] includes start but excludes end: indices 1, 2, 3."
+    },
+    {
+      "question": "How do you reverse a string using slicing?",
+      "answer": "string[::-1]",
+      "hint": "Uses a negative step",
+      "explanation": "[::‑1] means start to end with step ‑1, reversing the string."
+    },
+    {
+      "question": "What does \"Hello\"[:3] return?",
+      "answer": "Hel",
+      "hint": "Omitting start defaults to 0",
+      "explanation": "[:3] is the same as [0:3], giving characters at index 0, 1, 2."
+    },
+    {
+      "question": "What method converts a string to all uppercase?",
+      "answer": ".upper()",
+      "hint": "Opposite of .lower()",
+      "explanation": "\"hello\".upper() → \"HELLO\". Returns a new string."
+    },
+    {
+      "question": "What method converts a string to all lowercase?",
+      "answer": ".lower()",
+      "hint": "Opposite of .upper()",
+      "explanation": "\"HELLO\".lower() → \"hello\". Returns a new string."
+    },
+    {
+      "question": "What method capitalizes the first letter of each word?",
+      "answer": ".title()",
+      "hint": "Like a title of a book",
+      "explanation": "\"hello world\".title() → \"Hello World\""
+    },
+    {
+      "question": "What is the difference between .find() and .index()?",
+      "answer": ".find() returns -1 if not found, .index() raises ValueError",
+      "hint": "One is 'safer' than the other",
+      "explanation": "Both search for a substring, but .find() returns -1 on failure while .index() raises an error."
+    },
+    {
+      "question": "What does .strip() do?",
+      "answer": "Removes whitespace from both sides of a string",
+      "hint": "Like trimming a string",
+      "explanation": "\"  hello  \".strip() → \"hello\". .lstrip() and .rstrip() do left/right only."
+    },
+    {
+      "question": "What does .replace(old, new) do?",
+      "answer": "Replaces all occurrences of 'old' with 'new'",
+      "hint": "Find and replace",
+      "explanation": "\"Hello\".replace(\"l\", \"r\") → \"Herro\". Replaces ALL occurrences."
+    },
+    {
+      "question": "What does .split() do?",
+      "answer": "Splits a string into a list of words",
+      "hint": "Breaks the string apart",
+      "explanation": "\"a b c\".split() → [\"a\", \"b\", \"c\"]. Default splits on whitespace."
+    },
+    {
+      "question": "What does \"-\".join([\"a\", \"b\", \"c\"]) return?",
+      "answer": "a-b-c",
+      "hint": "Opposite of split — joins items with a separator",
+      "explanation": "The separator string calls .join() with a list: \"sep\".join(list)"
+    },
+    {
+      "question": "What does .count(substring) do?",
+      "answer": "Counts how many times the substring appears",
+      "hint": "Returns a number",
+      "explanation": "\"hello\".count(\"l\") → 2"
+    },
+    {
+      "question": "What does .startswith(prefix) return?",
+      "answer": "True or False",
+      "hint": "Returns a boolean",
+      "explanation": "\"Hello\".startswith(\"He\") → True. Checks if string begins with prefix."
+    },
+    {
+      "question": "Are Python strings mutable or immutable?",
+      "answer": "Immutable",
+      "hint": "You can't change them in place",
+      "explanation": "Strings cannot be modified after creation. s[0] = 'h' raises TypeError."
+    },
+    {
+      "question": "What does .swapcase() do?",
+      "answer": "Swaps uppercase to lowercase and vice versa",
+      "hint": "Inverts the case",
+      "explanation": "\"Hello\".swapcase() → \"hELLO\""
+    },
+    {
+      "question": "What does .zfill(5) do to the string \"42\"?",
+      "answer": "\"00042\"",
+      "hint": "Pads with a specific character on the left",
+      "explanation": ".zfill(width) pads with zeros on the left to reach the specified width."
+    },
+    {
+      "question": "What does .isdigit() check?",
+      "answer": "Whether all characters are digits",
+      "hint": "Returns True or False",
+      "explanation": "\"123\".isdigit() → True, \"12a\".isdigit() → False"
+    },
+    {
+      "question": "How do you check if a substring exists in a string?",
+      "answer": "Using the 'in' keyword",
+      "code": "\"ell\" in \"Hello\"  # True",
+      "hint": "A membership operator",
+      "explanation": "The 'in' keyword checks membership: \"ell\" in \"Hello\" → True"
+    }
+  ]
+}

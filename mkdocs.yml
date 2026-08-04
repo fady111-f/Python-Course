@@ -1,0 +1,72 @@
+site_name: Python Mastery Platform
+site_description: A comprehensive, interactive Python learning suite
+site_url: https://fady111-f.github.io/Python-Course/
+repo_url: https://github.com/fady111-f/Python-Course
+repo_name: fady111-f/Python-Course
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - Cheat Sheets:
+    - Fundamentals: cheatsheets/01_fundamentals.md
+    - Strings: cheatsheets/02_strings.md
+  - Projects:
+    - Overview: projects/index.md
+    - Personal Card Generator: projects/01_personal_card_generator.md
+    - Mad Libs Game: projects/02_mad_libs_game.md
+    - Text Analyzer: projects/03_text_analyzer.md
+  - Tools:
+    - Flashcards: tools/flashcards.md
+    - Dashboard: tools/dashboard.md
+    - Course CLI: tools/course_runner.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/fady111-f

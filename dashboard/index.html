@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Course — Progress Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a1f2e;
+            --bg-card-hover: #222840;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-pink: #ec4899;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            position: relative;
+        }
+
+        .header-logo {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.4rem 1rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s;
+        }
+
+        .badge:hover { transform: scale(1.05); }
+        .badge.blue { border-color: rgba(59, 130, 246, 0.3); color: var(--accent-blue); }
+        .badge.green { border-color: rgba(16, 185, 129, 0.3); color: var(--accent-green); }
+        .badge.orange { border-color: rgba(245, 158, 11, 0.3); color: var(--accent-orange); }
+
+        /* Progress Rings Section */
+        .progress-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .progress-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .progress-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .progress-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); }
+        .progress-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-green), var(--accent-blue)); }
+        .progress-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-orange), var(--accent-red)); }
+
+        .ring-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1rem;
+        }
+
+        .ring-container svg {
+            transform: rotate(-90deg);
+            width: 140px;
+            height: 140px;
+        }
+
+        .ring-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 10;
+        }
+
+        .ring-progress {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 377;
+            stroke-dashoffset: 377;
+            transition: stroke-dashoffset 2s ease-out;
+        }
+
+        .ring-progress.blue { stroke: url(#blueGrad); }
+        .ring-progress.green { stroke: url(#greenGrad); }
+        .ring-progress.orange { stroke: url(#orangeGrad); }
+
+        .ring-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .ring-percent {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .ring-percent.blue { color: var(--accent-blue); }
+        .ring-percent.green { color: var(--accent-green); }
+        .ring-percent.orange { color: var(--accent-orange); }
+
+        .ring-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .progress-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .progress-detail {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Weeks Grid */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1rem;
+        }
+
+        .week-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .week-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .week-header {
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .week-header:hover { background: var(--bg-card-hover); }
+
+        .week-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .week-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .week-num.done { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .week-num.progress { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .week-num.pending { background: rgba(100, 116, 139, 0.15); color: var(--text-muted); }
+
+        .week-title { font-weight: 600; font-size: 0.9rem; }
+        .week-subtitle { font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px; }
+
+        .week-status {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 99px;
+            font-weight: 600;
+        }
+
+        .week-status.done { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .week-status.progress { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .week-status.pending { background: rgba(100, 116, 139, 0.1); color: var(--text-muted); }
+
+        .week-lessons {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            border-top: 1px solid transparent;
+        }
+
+        .week-card.open .week-lessons {
+            max-height: 800px;
+            border-top-color: var(--glass-border);
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem;
+            transition: background 0.15s;
+        }
+
+        .lesson-item:hover { background: var(--bg-card-hover); }
+
+        .lesson-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            flex-shrink: 0;
+        }
+
+        .lesson-status.done { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .lesson-status.pending { background: rgba(100, 116, 139, 0.1); border: 1.5px solid var(--text-muted); }
+
+        .lesson-name { color: var(--text-secondary); }
+        .lesson-name.done { color: var(--text-primary); }
+        .lesson-num { color: var(--text-muted); font-weight: 600; min-width: 28px; }
+
+        .chevron {
+            transition: transform 0.3s;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .week-card.open .chevron { transform: rotate(180deg); }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container { padding: 1rem; }
+            .header h1 { font-size: 1.8rem; }
+            .progress-section { grid-template-columns: 1fr; }
+            .weeks-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Gradients -->
+    <svg width="0" height="0">
+        <defs>
+            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#3b82f6"/>
+                <stop offset="100%" style="stop-color:#8b5cf6"/>
+            </linearGradient>
+            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10b981"/>
+                <stop offset="100%" style="stop-color:#3b82f6"/>
+            </linearGradient>
+            <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b"/>
+                <stop offset="100%" style="stop-color:#ef4444"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-logo">🐍</div>
+            <h1>Python Mastery Dashboard</h1>
+            <p>Track your progress through the Elzero Python Course</p>
+            <div class="header-badges">
+                <span class="badge blue">Python 3.12</span>
+                <span class="badge green">152 Videos</span>
+                <span class="badge orange">113 Assignments</span>
+            </div>
+        </header>
+
+        <!-- Progress Rings -->
+        <section class="progress-section">
+            <div class="progress-card">
+                <div class="ring-container">
+                    <svg viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="60"/>
+                        <circle class="ring-progress blue" cx="65" cy="65" r="60" data-percent="10"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-percent blue" data-target="10">0</span>
+                        <span class="ring-sub">PERCENT</span>
+                    </div>
+                </div>
+                <div class="progress-title">Videos Watched</div>
+                <div class="progress-detail">15 / 152 Videos</div>
+            </div>
+
+            <div class="progress-card">
+                <div class="ring-container">
+                    <svg viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="60"/>
+                        <circle class="ring-progress green" cx="65" cy="65" r="60" data-percent="10"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-percent green" data-target="10">0</span>
+                        <span class="ring-sub">PERCENT</span>
+                    </div>
+                </div>
+                <div class="progress-title">Study Plan</div>
+                <div class="progress-detail">2 / 19 Weeks</div>
+            </div>
+
+            <div class="progress-card">
+                <div class="ring-container">
+                    <svg viewBox="0 0 130 130">
+                        <circle class="ring-bg" cx="65" cy="65" r="60"/>
+                        <circle class="ring-progress orange" cx="65" cy="65" r="60" data-percent="0"/>
+                    </svg>
+                    <div class="ring-label">
+                        <span class="ring-percent orange" data-target="0">0</span>
+                        <span class="ring-sub">PERCENT</span>
+                    </div>
+                </div>
+                <div class="progress-title">Assignments</div>
+                <div class="progress-detail">0 / 113 Solved</div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <h2 class="section-title">⚡ Quick Access</h2>
+        <div class="features-grid">
+            <a class="feature-card" href="../cheatsheets/01_fundamentals.md">
+                <div class="feature-icon">📋</div>
+                <h3>Cheat Sheets</h3>
+                <p>Quick reference guides for each topic covered</p>
+            </a>
+            <a class="feature-card" href="../projects/">
+                <div class="feature-icon">🚀</div>
+                <h3>Mini Projects</h3>
+                <p>Hands-on projects that reinforce every 5 videos</p>
+            </a>
+            <a class="feature-card" href="../flashcards/flashcards.py">
+                <div class="feature-icon">🧠</div>
+                <h3>Flashcards</h3>
+                <p>Spaced repetition CLI for memorizing concepts</p>
+            </a>
+            <a class="feature-card" href="../course_runner.py">
+                <div class="feature-icon">🖥️</div>
+                <h3>Course CLI</h3>
+                <p>Interactive terminal dashboard to run lessons</p>
+            </a>
+        </div>
+
+        <!-- Weeks -->
+        <h2 class="section-title">📚 Course Weeks</h2>
+        <div class="weeks-grid" id="weeksGrid"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Based on <a href="https://elzero.org/study/mastering-python-study-plan/" target="_blank">Mastering Python</a> by <a href="https://www.youtube.com/user/OsamaElzero" target="_blank">Osama Elzero</a></p>
+            <p style="margin-top: 0.5rem;">Made with ❤️ for learning Python</p>
+        </footer>
+    </div>
+
+    <script>
+    // ===== COURSE DATA =====
+    const weeks = [
+        { num: "01", title: "Introduction & Variables", status: "done", lessons: [
+            { num: "001", name: "Introduction & What Is Python?", done: true },
+            { num: "002", name: "What I Need?", done: true },
+            { num: "003", name: "Syntax & Your First App", done: true },
+            { num: "004", name: "Comments", done: true },
+            { num: "005", name: "Dealing With Data In Python", done: true },
+            { num: "006", name: "Some Data Types Overview", done: true },
+            { num: "007", name: "Variables - Part 01", done: true },
+            { num: "008", name: "Variables - Part 02", done: true },
+            { num: "009", name: "Escape Sequences Characters", done: true },
+            { num: "010", name: "Concatenation & Training", done: true },
+        ]},
+        { num: "02", title: "Strings & Methods", status: "progress", lessons: [
+            { num: "011", name: "String", done: true },
+            { num: "012", name: "String - Indexing & Slicing", done: true },
+            { num: "013", name: "String - Methods - Part 01", done: true },
+            { num: "014", name: "String - Methods - Part 02", done: true },
+            { num: "015", name: "String - Methods - Part 03", done: true },
+            { num: "016", name: "String - Methods - Part 04", done: false },
+            { num: "017", name: "String - Formatting - Old Way", done: false },
+            { num: "018", name: "String - Formatting - New Way", done: false },
+        ]},
+        { num: "03", title: "Numbers, Lists & Tuples", status: "pending", lessons: [
+            { num: "019", name: "Numbers", done: false },
+            { num: "020", name: "Arithmetic Operators", done: false },
+            { num: "021", name: "List", done: false },
+            { num: "022", name: "List - Methods - Part 01", done: false },
+            { num: "023", name: "List - Methods - Part 02", done: false },
+            { num: "024", name: "Tuple - Methods - Part 01", done: false },
+            { num: "025", name: "Tuple - Methods - Part 02", done: false },
+        ]},
+        { num: "04", title: "Sets & Dictionaries", status: "pending", lessons: [
+            { num: "026", name: "Set", done: false }, { num: "027", name: "Set - Methods Part 01", done: false },
+            { num: "028", name: "Set - Methods Part 02", done: false }, { num: "029", name: "Set - Methods Part 03", done: false },
+            { num: "030", name: "Dictionary", done: false }, { num: "031", name: "Dictionary - Methods Part 01", done: false },
+            { num: "032", name: "Dictionary - Methods Part 02", done: false },
+        ]},
+        { num: "05", title: "Operators, Input & Practice", status: "pending", lessons: [
+            { num: "033", name: "Boolean", done: false }, { num: "034", name: "Boolean Operators", done: false },
+            { num: "035", name: "Assignment Operators", done: false }, { num: "036", name: "Comparison Operators", done: false },
+            { num: "037", name: "Type Conversion", done: false }, { num: "038", name: "User Input", done: false },
+            { num: "039", name: "Email Slice - Practical", done: false }, { num: "040", name: "Your Age In Full Details", done: false },
+        ]},
+        { num: "06", title: "Control Flow", status: "pending", lessons: [
+            { num: "041", name: "If & Elif & Else", done: false }, { num: "042", name: "Nested If & Training", done: false },
+            { num: "043", name: "Ternary Conditional", done: false }, { num: "044", name: "Calculate Age Advanced", done: false },
+            { num: "045", name: "Membership Operators", done: false }, { num: "046", name: "Membership Control", done: false },
+        ]},
+        { num: "07", title: "Loops", status: "pending", lessons: [
+            { num: "047", name: "While - Else", done: false }, { num: "048", name: "While - Printing Friends", done: false },
+            { num: "049", name: "While - Bookmarks Manager", done: false }, { num: "050", name: "While - Password Checker", done: false },
+            { num: "051", name: "For - Else", done: false }, { num: "052", name: "For - Training", done: false },
+            { num: "053", name: "For - Nested Loop", done: false }, { num: "054", name: "Break & Continue & Pass", done: false },
+            { num: "055", name: "Advanced Dictionary", done: false },
+        ]},
+        { num: "08", title: "Functions", status: "pending", lessons: [
+            { num: "056", name: "Function - Return", done: false }, { num: "057", name: "Parameters & Arguments", done: false },
+            { num: "058", name: "Packing & Unpacking Args", done: false }, { num: "059", name: "Default Parameters", done: false },
+            { num: "060", name: "Packing Keyword Args", done: false }, { num: "061", name: "Packing Training", done: false },
+            { num: "062", name: "Scope", done: false }, { num: "063", name: "Recursion", done: false },
+            { num: "064", name: "Lambda", done: false },
+        ]},
+        { num: "09", title: "File Handling", status: "pending", lessons: [
+            { num: "065", name: "File Handling - Intro", done: false }, { num: "066", name: "Read File", done: false },
+            { num: "067", name: "Write & Append", done: false }, { num: "068", name: "Important Information", done: false },
+        ]},
+        { num: "10", title: "Built-in Functions", status: "pending", lessons: [
+            { num: "069", name: "Built-In Functions 01", done: false }, { num: "070", name: "Built-In Functions 02", done: false },
+            { num: "071", name: "Built-In Functions 03", done: false }, { num: "072", name: "Map", done: false },
+            { num: "073", name: "Filter", done: false }, { num: "074", name: "Reduce", done: false },
+            { num: "075", name: "Built-In Functions 07", done: false },
+        ]},
+        { num: "11", title: "Modules, DateTime & Decorators", status: "pending", lessons: [
+            { num: "076", name: "Modules - Intro", done: false }, { num: "077", name: "Create Your Module", done: false },
+            { num: "078", name: "External Packages", done: false }, { num: "079", name: "Date & Time Intro", done: false },
+            { num: "080", name: "Formatting Date", done: false }, { num: "081", name: "Iterable vs Iterator", done: false },
+            { num: "082", name: "Generators", done: false }, { num: "083", name: "Decorators Intro", done: false },
+            { num: "084", name: "Decorators - Params", done: false }, { num: "085", name: "Decorators - Speed Test", done: false },
+        ]},
+        { num: "12", title: "Code Quality & Errors", status: "pending", lessons: [
+            { num: "086", name: "Zip Practical", done: false }, { num: "087", name: "Pillow", done: false },
+            { num: "088", name: "Docstrings", done: false }, { num: "089", name: "Pylint", done: false },
+            { num: "090", name: "Exceptions Raising", done: false }, { num: "091", name: "Try Except Else Finally", done: false },
+            { num: "092", name: "Advanced Exceptions", done: false }, { num: "093", name: "Debugging", done: false },
+            { num: "094", name: "Type Hinting", done: false },
+        ]},
+        { num: "13", title: "Regular Expressions", status: "pending", lessons: [
+            { num: "095", name: "Regex - Intro", done: false }, { num: "096", name: "Quantifiers", done: false },
+            { num: "097", name: "Character Classes", done: false }, { num: "098", name: "Assertions & Email", done: false },
+            { num: "099", name: "Logical Or & Escaping", done: false }, { num: "100", name: "re Search & FindAll", done: false },
+            { num: "101", name: "re Split & Sub", done: false }, { num: "102", name: "Groups & Flags", done: false },
+        ]},
+        { num: "14", title: "Object-Oriented Programming", status: "pending", lessons: [
+            { num: "103", name: "OOP Intro", done: false }, { num: "104", name: "Class Syntax", done: false },
+            { num: "105", name: "Instance Attrs 01", done: false }, { num: "106", name: "Instance Attrs 02", done: false },
+            { num: "107", name: "Class Attributes", done: false }, { num: "108", name: "Class & Static Methods", done: false },
+            { num: "109", name: "Magic Methods", done: false }, { num: "110", name: "Inheritance", done: false },
+            { num: "111", name: "Multiple Inheritance", done: false }, { num: "112", name: "Polymorphism", done: false },
+            { num: "113", name: "Encapsulation", done: false }, { num: "114", name: "Getters & Setters", done: false },
+            { num: "115", name: "@Property Decorator", done: false }, { num: "116", name: "Abstract Base Class", done: false },
+        ]},
+        { num: "15", title: "SQLite Database", status: "pending", lessons: [
+            { num: "117", name: "Database Intro", done: false }, { num: "118", name: "Create DB & Connect", done: false },
+            { num: "119", name: "Insert Data", done: false }, { num: "120", name: "Retrieve Data", done: false },
+            { num: "121", name: "Training On Everything", done: false }, { num: "122", name: "Update & Delete", done: false },
+            { num: "123", name: "Skills App 01", done: false }, { num: "124", name: "Skills App 02", done: false },
+            { num: "125", name: "Skills App 03", done: false }, { num: "126", name: "Skills App 04", done: false },
+            { num: "127", name: "Important Info", done: false },
+        ]},
+    ];
+
+    // ===== RENDER WEEKS =====
+    const grid = document.getElementById('weeksGrid');
+
+    weeks.forEach(week => {
+        const doneCount = week.lessons.filter(l => l.done).length;
+        const totalCount = week.lessons.length;
+        const statusLabel = week.status === 'done' ? '✅ Done' : week.status === 'progress' ? `🔄 ${doneCount}/${totalCount}` : '⬜ Pending';
+
+        const card = document.createElement('div');
+        card.className = 'week-card';
+        card.innerHTML = `
+            <div class="week-header" onclick="this.parentElement.classList.toggle('open')">
+                <div class="week-info">
+                    <div class="week-num ${week.status}">W${week.num}</div>
+                    <div>
+                        <div class="week-title">${week.title}</div>
+                        <div class="week-subtitle">${totalCount} lessons</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem">
+                    <span class="week-status ${week.status}">${statusLabel}</span>
+                    <span class="chevron">▼</span>
+                </div>
+            </div>
+            <div class="week-lessons">
+                ${week.lessons.map(l => `
+                    <div class="lesson-item">
+                        <div class="lesson-status ${l.done ? 'done' : 'pending'}">${l.done ? '✓' : ''}</div>
+                        <span class="lesson-num">${l.num}</span>
+                        <span class="lesson-name ${l.done ? 'done' : ''}">${l.name}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+
+    // ===== ANIMATE PROGRESS RINGS =====
+    setTimeout(() => {
+        document.querySelectorAll('.ring-progress').forEach(ring => {
+            const percent = parseInt(ring.dataset.percent);
+            const circumference = 2 * Math.PI * 60; // r=60
+            const offset = circumference - (percent / 100) * circumference;
+            ring.style.strokeDashoffset = offset;
+        });
+
+        document.querySelectorAll('.ring-percent').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            let current = 0;
+            const duration = 1500;
+            const step = target / (duration / 16);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = Math.round(current) + '%';
+            }, 16);
+        });
+    }, 300);
+    </script>
+</body>
+</html>

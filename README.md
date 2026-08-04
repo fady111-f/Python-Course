@@ -50,9 +50,13 @@ This repository is more than just course notes — it's a **fully interactive Py
 
 - 🎥 **127 lesson scripts** with hands-on code examples across 15 study weeks
 - 📝 **113 assignments** spanning 24 topic categories (solving in progress)
+- 📋 **[Cheat Sheets](cheatsheets/01_fundamentals.md)** for quick syntax and method references
+- 🚀 **[Mini Projects](projects/)** (1 project for every 5 videos watched)
+- 🧠 **[Flashcard CLI](flashcards/flashcards.py)** for spaced-repetition studying
+- 📊 **[Web Dashboard](dashboard/index.html)** with interactive progress rings
 - 🧪 **Automated test suite** validating every script and concept
 - 🖥️ **Interactive CLI dashboard** to explore lessons, take quizzes, and track progress
-- ⚙️ **CI/CD pipeline** with multi-version Python testing via GitHub Actions
+- ⚙️ **CI/CD pipeline** with multi-version Python testing & MkDocs site deployment via GitHub Actions
 
 ---
 

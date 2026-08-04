@@ -1,0 +1,128 @@
+{
+  "id": "01_fundamentals",
+  "name": "Python Fundamentals",
+  "description": "Syntax, comments, data types, variables, escape sequences",
+  "cards": [
+    {
+      "question": "What function is used to output text to the console in Python?",
+      "answer": "print()",
+      "hint": "It's a built-in function",
+      "explanation": "print() is used to display output. Example: print(\"Hello\")"
+    },
+    {
+      "question": "How do you write a single-line comment in Python?",
+      "answer": "# comment",
+      "hint": "Uses a special symbol at the start",
+      "explanation": "The hash/pound symbol (#) starts a single-line comment."
+    },
+    {
+      "question": "How do you write a multi-line comment in Python?",
+      "answer": "triple quotes (\"\"\" or ''')",
+      "hint": "Uses three of the same quote character",
+      "explanation": "Triple quotes (\"\"\"...\"\"\") create multi-line strings that can serve as comments."
+    },
+    {
+      "question": "What data type is \"Hello World\"?",
+      "answer": "str",
+      "hint": "Short for 'string'",
+      "explanation": "Text enclosed in quotes is a string (str) type."
+    },
+    {
+      "question": "What data type is 42?",
+      "answer": "int",
+      "hint": "Short for 'integer'",
+      "explanation": "Whole numbers without decimals are integers (int)."
+    },
+    {
+      "question": "What data type is 3.14?",
+      "answer": "float",
+      "hint": "It has a decimal point",
+      "explanation": "Numbers with decimal points are floating-point numbers (float)."
+    },
+    {
+      "question": "What data type is True?",
+      "answer": "bool",
+      "hint": "Can only be True or False",
+      "explanation": "Boolean (bool) represents True or False values."
+    },
+    {
+      "question": "What function checks the data type of a value?",
+      "answer": "type()",
+      "hint": "Built-in function, 4 letters",
+      "explanation": "type(value) returns the data type. Example: type(42) → <class 'int'>"
+    },
+    {
+      "question": "Can a Python variable name start with a number?",
+      "answer": "No",
+      "hint": "Think about what characters are valid at the start",
+      "explanation": "Variable names must start with a letter or underscore (_), not a number."
+    },
+    {
+      "question": "What is the escape sequence for a newline?",
+      "answer": "\\n",
+      "hint": "Backslash + one letter",
+      "explanation": "\\n inserts a newline character. print(\"Line1\\nLine2\") prints on two lines."
+    },
+    {
+      "question": "What is the escape sequence for a tab?",
+      "answer": "\\t",
+      "hint": "Backslash + one letter",
+      "explanation": "\\t inserts a horizontal tab character for spacing."
+    },
+    {
+      "question": "How do you assign the value 10 to a variable called 'age'?",
+      "answer": "age = 10",
+      "hint": "Uses the equals sign",
+      "explanation": "The = operator assigns a value to a variable: variable_name = value"
+    },
+    {
+      "question": "How do you assign the same value to multiple variables at once?",
+      "answer": "a = b = c = value",
+      "hint": "Chain the equals signs",
+      "explanation": "Example: x = y = z = 0 assigns 0 to all three variables."
+    },
+    {
+      "question": "How do you concatenate two strings 'Hello' and 'World'?",
+      "answer": "\"Hello\" + \"World\"",
+      "hint": "Uses an arithmetic operator",
+      "explanation": "The + operator joins strings: \"Hello\" + \" \" + \"World\" → \"Hello World\""
+    },
+    {
+      "question": "What happens when you do \"abc\" * 3?",
+      "answer": "\"abcabcabc\"",
+      "hint": "Repetition operator",
+      "explanation": "The * operator repeats a string: \"abc\" * 3 → \"abcabcabc\""
+    },
+    {
+      "question": "Is Python case-sensitive? Does 'Name' equal 'name'?",
+      "answer": "Yes, Python is case-sensitive. Name ≠ name",
+      "hint": "Capital letters matter",
+      "explanation": "Python treats uppercase and lowercase as different: Name and name are different variables."
+    },
+    {
+      "question": "What is the naming convention for Python variables?",
+      "answer": "snake_case",
+      "hint": "Uses underscores between words",
+      "explanation": "Python convention: my_variable_name (lowercase with underscores)."
+    },
+    {
+      "question": "What does a raw string (r-string) do?",
+      "answer": "Ignores escape sequences",
+      "code": "print(r\"C:\\new\\folder\")",
+      "hint": "Prefix with 'r'",
+      "explanation": "r\"...\" treats backslashes as literal characters, not escape sequences."
+    },
+    {
+      "question": "How do you swap the values of variables x and y in one line?",
+      "answer": "x, y = y, x",
+      "hint": "Python supports tuple unpacking",
+      "explanation": "Python allows simultaneous assignment: x, y = y, x swaps their values."
+    },
+    {
+      "question": "What will print(\"Hello\" + 5) produce?",
+      "answer": "TypeError",
+      "hint": "You can't mix types with +",
+      "explanation": "You cannot concatenate str and int directly. Use str(5) or f-strings."
+    }
+  ]
+}
