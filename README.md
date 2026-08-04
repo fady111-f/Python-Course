@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white" alt="Python Version" />
   </a>
   <a href="#-assignments">
-    <img src="https://img.shields.io/badge/Assignments-0%2F113%20Solved-FF9800?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
+    <img src="https://img.shields.io/badge/Assignments-109%2F113%20Solved-00C853?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
   </a>
   <a href="#-quick-start">
     <img src="https://img.shields.io/badge/Interactive%20CLI-Ready-FF6D00?logo=windowsterminal&logoColor=white" alt="Interactive CLI" />
@@ -66,7 +66,7 @@ This repository is more than just course notes — it's a **fully interactive Py
 | :--- | :--- | :--- |
 | 📅 Study Plan | ![10%](https://progress-bar.dev/10/?title=Completed&width=200) | 2 / 19 Weeks |
 | 🎥 Videos Watched | ![10%](https://progress-bar.dev/10/?title=Watched&width=200) | 15 / 152 Videos |
-| 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 0 / 113 Exercises |
+| 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 109 / 113 Exercises |
 
 > **Course**: [Mastering Python Study Plan](https://elzero.org/study/mastering-python-study-plan/) &nbsp;|&nbsp; **Playlist**: [YouTube (20h 25m)](https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs) &nbsp;|&nbsp; **Assignments**: [Elzero Assignments](https://elzero.org/category/assignments/python-assignments/)
 

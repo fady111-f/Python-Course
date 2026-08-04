@@ -7,6 +7,15 @@ An interactive word game that creates funny stories
 using player-provided words!
 """
 
+import sys
+
+# ===== UTF-8 Terminal Support =====
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 # ===== Game Header =====
 print()
 print("=" * 50)
@@ -16,19 +25,26 @@ print()
 print("Fill in the blanks to create a funny story!")
 print("Type a word for each prompt and press Enter.\n")
 
+def safe_input(prompt, default):
+    try:
+        val = input(prompt).strip()
+        return val if val else default
+    except (EOFError, KeyboardInterrupt):
+        return default
+
 # ===== Collect Words =====
-adjective_1 = input("Enter an adjective (e.g., silly): ")
-noun_1 = input("Enter a noun (e.g., dragon): ")
-verb_past = input("Enter a verb in past tense (e.g., jumped): ")
-place = input("Enter a place (e.g., the moon): ")
-adjective_2 = input("Enter another adjective (e.g., enormous): ")
-food = input("Enter a food (e.g., pizza): ")
-number = input("Enter a number (e.g., 42): ")
-animal = input("Enter an animal (e.g., penguin): ")
-verb_ing = input("Enter a verb ending in -ing (e.g., dancing): ")
-celebrity = input("Enter a famous person's name: ")
-color = input("Enter a color (e.g., purple): ")
-noun_2 = input("Enter another noun (e.g., spaceship): ")
+adjective_1 = safe_input("Enter an adjective (e.g., silly): ", "sparkly")
+noun_1 = safe_input("Enter a noun (e.g., dragon): ", "dragon")
+verb_past = safe_input("Enter a verb in past tense (e.g., jumped): ", "teleported")
+place = safe_input("Enter a place (e.g., the moon): ", "the moon")
+adjective_2 = safe_input("Enter another adjective (e.g., enormous): ", "gigantic")
+food = safe_input("Enter a food (e.g., pizza): ", "pizza")
+number = safe_input("Enter a number (e.g., 42): ", "42")
+animal = safe_input("Enter an animal (e.g., penguin): ", "penguin")
+verb_ing = safe_input("Enter a verb ending in -ing (e.g., dancing): ", "dancing")
+celebrity = safe_input("Enter a famous person's name: ", "Einstein")
+color = safe_input("Enter a color (e.g., purple): ", "purple")
+noun_2 = safe_input("Enter another noun (e.g., spaceship): ", "spaceship")
 
 # ===== Story Templates =====
 print()

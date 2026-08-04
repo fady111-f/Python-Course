@@ -7,6 +7,15 @@ Analyzes any text input and provides detailed statistics
 using string methods learned in Week 02.
 """
 
+import sys
+
+# ===== UTF-8 Terminal Support =====
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 # ===== Header =====
 print()
 print("=" * 55)
@@ -18,11 +27,14 @@ print()
 # ===== Get Input =====
 print("Enter the text you want to analyze.")
 print("(Type your text and press Enter)\n")
-text = input("📝 Your text: ")
+try:
+    text = input("📝 Your text: ")
+except (EOFError, KeyboardInterrupt):
+    text = ""
 
 # ===== Guard against empty input =====
 if len(text) == 0:
-    print("\n⚠️  You entered empty text! Using a sample instead.\n")
+    print("\n⚠️  Using sample text for analysis.\n")
     text = "Python is an Amazing programming language. Python is easy to learn!"
 
 print()
@@ -98,7 +110,10 @@ if len(text) > 20:
 print("\n🔍 SEARCH & FIND")
 print("-" * 40)
 
-search_term = input("\n  Enter a word to search for: ")
+try:
+    search_term = input("\n  Enter a word to search for: ")
+except (EOFError, KeyboardInterrupt):
+    search_term = "Python"
 
 if search_term:
     occurrences = text.lower().count(search_term.lower())

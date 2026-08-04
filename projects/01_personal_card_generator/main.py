@@ -6,6 +6,15 @@ Videos 1-5: print(), variables, data types
 Generate a styled personal info card in the terminal.
 """
 
+import sys
+
+# ===== UTF-8 Terminal Support =====
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 # ===== Your Information =====
 first_name = "Fady"
 last_name = "Hany"

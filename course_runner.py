@@ -130,16 +130,33 @@ def show_status():
     print_banner()
     print("\n📊 PROGRESS METRICS DASHBOARD:\n")
 
-    total_weeks = len(list(LESSONS_DIR.glob("Week *"))) if LESSONS_DIR.exists() else 0
+    watched_videos = 15
+    completed_weeks = 2
+    total_videos = 152
+    total_weeks = 19
     total_lessons = len(list(LESSONS_DIR.glob("Week */*.py"))) if LESSONS_DIR.exists() else 0
     total_assignments = len(list(ASSIGNMENTS_DIR.glob("*/*.py"))) if ASSIGNMENTS_DIR.exists() else 0
 
-    print(f"  • Total Study Weeks  : {total_weeks} / 15 Weeks Completed")
-    print(f"  • Video Lesson Files : {total_lessons} Python Scripts")
-    print(f"  • Solved Assignments : {total_assignments} Exercise Files")
+    video_pct = round((watched_videos / total_videos) * 100)
+    week_pct = round((completed_weeks / total_weeks) * 100)
+
+    print(f"  • Videos Watched     : {watched_videos} / {total_videos} Videos ({video_pct}%)")
+    print(f"  • Study Plan         : {completed_weeks} / {total_weeks} Weeks ({week_pct}%)")
+    print(f"  • Video Lesson Files : {total_lessons} Python Scripts in Repo")
     print(f"  • Quiz Modules       : {len(QUIZZES)} Topic Quizzes Ready")
-    print(f"\n  [========================================] 100% Solved Assignments!")
+    print(f"  • Solved Assignments : 0 / 113 Completed")
+
+    bar_filled = int(video_pct / 5)
+    bar_empty = 20 - bar_filled
+    print(f"\n  Progress: [{'=' * bar_filled}{'.' * bar_empty}] {video_pct}% Videos Watched")
     print("=" * 65)
+
+    # Sync README and Dashboard
+    try:
+        from update_progress import run_sync
+        run_sync()
+    except Exception:
+        pass
 
 
 def run_lesson(lesson_query: str):
