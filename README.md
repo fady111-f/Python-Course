@@ -2,7 +2,42 @@
   <img src="https://i.ibb.co/ggSVcwm/python.png" alt="Python Course" />
 </p>
 
-# Python Course From [Elzero Web School](https://elzero.org/)
+# 🚀 Python Mastery Platform & Elzero Course Suite
+
+[![Python CI](https://github.com/fady111-f/Python-Course/actions/workflows/python-ci.yml/badge.svg)](https://github.com/fady111-f/Python-Course/actions/workflows/python-ci.yml)
+[![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
+[![Assignments Solved](https://img.shields.io/badge/Assignments-100%25%20Solved-brightgreen.svg)](https://elzero.org/category/assignments/python-assignments/)
+[![Interactive CLI](https://img.shields.io/badge/Interactive%20CLI-Ready-orange.svg)](#-interactive-cli--course-runner)
+
+An interactive, power-packed Python learning platform containing lesson examples, solved assignments, topic quizzes, an automated testing engine, and a terminal CLI dashboard.
+
+---
+
+## ⚡ Quick Start & Interactive CLI
+
+Launch the interactive terminal dashboard to run lessons, take quizzes, or run the test suite:
+
+```bash
+# Launch interactive terminal menu
+python course_runner.py
+
+# List all study weeks and lessons
+python course_runner.py --list-weeks
+
+# View progress metrics dashboard
+python course_runner.py --status
+
+# Execute a lesson script interactively (e.g. lesson 004 or OOP)
+python course_runner.py --run-lesson 004
+
+# Take a topic knowledge quiz
+python course_runner.py --quiz week01
+
+# Run automated unit tests across all modules
+python course_runner.py --test-all
+```
+
+---
 
 [Course Study Plan](https://elzero.org/study/mastering-python-study-plan/) => [ 015 From 019 ] - Weeks
 
@@ -21,6 +56,7 @@
 ![100%](https://progress-bar.dev/100/?title=Solved)
 
 ---
+
 
 ## Lessons
 
