@@ -296,7 +296,7 @@ Python-Course/
 | 013 | ✅ | [String - Methods - Part 01](Lessons/Week%2002/013%20-%20String%20-%20Methods%20-%20Part%2001.py) |
 | 014 | ✅ | [String - Methods - Part 02](Lessons/Week%2002/014%20-%20String%20-%20Methods%20-%20Part%2002.py) |
 | 015 | ✅ | [String - Methods - Part 03](Lessons/Week%2002/015%20-%20String%20-%20Methods%20-%20Part%2003.py) |
-| 016 | ⬜ | [String - Methods - Part 04](Lessons/Week%2002/016%20-%20String%20-%20Methods%20-%20Part%2004.py) |
+| 016 | ✅ | [String - Methods - Part 04](Lessons/Week%2002/016%20-%20String%20-%20Methods%20-%20Part%2004.py) |
 | 017 | ⬜ | [String - Formatting - Old Way](Lessons/Week%2002/017%20-%20String%20-%20Formatting%20-%20Old%20Way.py) |
 | 018 | ⬜ | [String - Formatting - New Way](Lessons/Week%2002/018%20-%20String%20-%20Formatting%20-%20New%20Way.py) |
 
