@@ -126,7 +126,13 @@ def run_sync():
         with open(DASHBOARD_PATH, "w", encoding="utf-8") as f:
             f.write(dash)
 
-        print("  ✅ dashboard/index.html updated successfully.")
+        # Sync to docs/dashboard/index.html for static site build
+        docs_dash = os.path.join(REPO_ROOT, "docs", "dashboard", "index.html")
+        os.makedirs(os.path.dirname(docs_dash), exist_ok=True)
+        with open(docs_dash, "w", encoding="utf-8") as f:
+            f.write(dash)
+
+        print("  ✅ dashboard/index.html & docs/dashboard/index.html updated successfully.")
 
     print("\n🎉 Course progress sync complete!")
 

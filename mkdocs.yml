@@ -36,6 +36,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Live Dashboard: dashboard/index.html
   - Cheat Sheets:
     - Fundamentals: cheatsheets/01_fundamentals.md
     - Strings: cheatsheets/02_strings.md
@@ -46,7 +47,7 @@ nav:
     - Text Analyzer: projects/03_text_analyzer.md
   - Tools:
     - Flashcards: tools/flashcards.md
-    - Dashboard: tools/dashboard.md
+    - Dashboard Guide: tools/dashboard.md
     - Course CLI: tools/course_runner.md
 
 markdown_extensions:

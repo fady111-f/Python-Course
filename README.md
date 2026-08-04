@@ -11,6 +11,15 @@
 </p>
 
 <p align="center">
+  <a href="https://fady111-f.github.io/Python-Course/">
+    <img src="https://img.shields.io/badge/🌐%20Live%20Website-Open%20Docs%20Hub-7C3AED?style=for-the-badge&logo=github&logoColor=white" alt="Live Website" />
+  </a>
+  <a href="https://fady111-f.github.io/Python-Course/dashboard/">
+    <img src="https://img.shields.io/badge/📊%20Live%20Dashboard-Open%20Progress%20Tracker-059669?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Live Dashboard" />
+  </a>
+</p>
+
+<p align="center">
   <a href="https://github.com/fady111-f/Python-Course/actions/workflows/python-ci.yml">
     <img src="https://github.com/fady111-f/Python-Course/actions/workflows/python-ci.yml/badge.svg" alt="CI Status" />
   </a>
@@ -20,13 +29,16 @@
   <a href="#-assignments">
     <img src="https://img.shields.io/badge/Assignments-0%2F113%20Solved-FF9800?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
   </a>
-  <a href="#-quick-start">
-    <img src="https://img.shields.io/badge/Interactive%20CLI-Ready-FF6D00?logo=windowsterminal&logoColor=white" alt="Interactive CLI" />
-  </a>
   <a href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs">
     <img src="https://img.shields.io/badge/YouTube-152%20Videos-FF0000?logo=youtube&logoColor=white" alt="YouTube Playlist" />
   </a>
 </p>
+
+---
+
+> ### 🌐 Live Hosted Links (No Terminal Required!)
+> - 📚 **[Open Live Documentation Hub](https://fady111-f.github.io/Python-Course/)** — Full MkDocs Material course website with search & cheat sheets
+> - 📊 **[Open Live Progress Dashboard](https://fady111-f.github.io/Python-Course/dashboard/)** — Interactive web dashboard with progress rings & lesson tracker
 
 ---
 
