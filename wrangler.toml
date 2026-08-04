@@ -1,0 +1,6 @@
+# Cloudflare Pages Configuration
+name = "python-course"
+pages_build_output_dir = "site"
+
+[site]
+bucket = "./site"
