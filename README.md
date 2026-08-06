@@ -27,7 +27,7 @@
     <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white" alt="Python Version" />
   </a>
   <a href="#-assignments">
-    <img src="https://img.shields.io/badge/Assignments-0%2F113%20Solved-FF9800?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
+    <img src="https://img.shields.io/badge/Assignments-0%2F24%20Topics-FF9800?logo=checkmarx&logoColor=white" alt="Assignments Solved" />
   </a>
   <a href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs">
     <img src="https://img.shields.io/badge/YouTube-152%20Videos-FF0000?logo=youtube&logoColor=white" alt="YouTube Playlist" />
@@ -77,8 +77,8 @@ This repository is more than just course notes — it's a **fully interactive Py
 | Metric | Progress | Details |
 | :--- | :--- | :--- |
 | 📅 Study Plan | ![11%](https://progress-bar.dev/11/?title=Completed&width=200) | 2 / 19 Weeks |
-| 🎥 Videos Watched | ![10%](https://progress-bar.dev/10/?title=Watched&width=200) | 15 / 152 Videos |
-| 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 0 / 113 Exercises |
+| 🎥 Videos Watched | ![13%](https://progress-bar.dev/13/?title=Watched&width=200) | 20 / 152 Videos |
+| 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 0 / 24 Exercises |
 
 > **Course**: [Mastering Python Study Plan](https://elzero.org/study/mastering-python-study-plan/) &nbsp;|&nbsp; **Playlist**: [YouTube (20h 25m)](https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs) &nbsp;|&nbsp; **Assignments**: [Elzero Assignments](https://elzero.org/category/assignments/python-assignments/)
 
@@ -287,7 +287,7 @@ Python-Course/
 </details>
 
 <details>
-<summary><strong>Week 02</strong> — Strings & Methods (8 lessons) 🔄 In Progress</summary>
+<summary><strong>Week 02</strong> — Strings & Methods (8 lessons) ✅ Completed</summary>
 
 | # | Status | Lesson |
 | :---: | :---: | :--- |
@@ -303,7 +303,7 @@ Python-Course/
 </details>
 
 <details>
-<summary><strong>Week 03</strong> — Numbers, Lists & Tuples (7 lessons) ⬜ Not Started</summary>
+<summary><strong>Week 03</strong> — Numbers, Lists & Tuples (7 lessons) 🔄 In Progress</summary>
 
 | # | Status | Lesson |
 | :---: | :---: | :--- |
@@ -519,7 +519,7 @@ Python-Course/
 
 ## 📝 Assignments
 
-**0 / 113** assignments solved across 24 topics. Progress will be updated as assignments are completed.
+**0 / 24** topics completed across 24 topics. Progress will be updated as assignments are completed.
 
 | Status | Lessons | Topic | Solution |
 | :---: | :--- | :--- | :---: |
