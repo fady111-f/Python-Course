@@ -76,7 +76,7 @@ This repository is more than just course notes — it's a **fully interactive Py
 
 | Metric | Progress | Details |
 | :--- | :--- | :--- |
-| 📅 Study Plan | ![10%](https://progress-bar.dev/10/?title=Completed&width=200) | 2 / 19 Weeks |
+| 📅 Study Plan | ![11%](https://progress-bar.dev/11/?title=Completed&width=200) | 2 / 19 Weeks |
 | 🎥 Videos Watched | ![10%](https://progress-bar.dev/10/?title=Watched&width=200) | 15 / 152 Videos |
 | 📝 Assignments | ![0%](https://progress-bar.dev/0/?title=Solved&width=200) | 0 / 113 Exercises |
 

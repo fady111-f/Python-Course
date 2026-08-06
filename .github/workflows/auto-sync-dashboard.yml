@@ -1,0 +1,39 @@
+name: Auto Sync Dashboard
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      
+permissions:
+  contents: write
+
+jobs:
+  sync-progress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          
+      - name: Run progress sync script
+        run: python update_progress.py
+        
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add dashboard/index.html docs/dashboard/index.html README.md
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to sync."
+          else
+            git commit -m "chore: auto-sync progress dashboard from README"
+            git push
+          fi

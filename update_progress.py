@@ -23,7 +23,6 @@ if sys.platform == "win32":
 
 REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
 LESSONS_DIR = os.path.join(REPO_ROOT, "Lessons")
-ASSIGNMENTS_DIR = os.path.join(REPO_ROOT, "Assignments")
 README_PATH = os.path.join(REPO_ROOT, "README.md")
 DASHBOARD_PATH = os.path.join(REPO_ROOT, "dashboard", "index.html")
 
@@ -46,13 +45,41 @@ def scan_lessons():
     return total_found, weeks_count
 
 
-def run_sync(watched_videos=15, completed_weeks=2, assignments_solved=0):
+def parse_readme_for_metrics():
+    """Parses README.md as the single source of truth to find current metrics."""
+    videos, weeks, assignments = 15, 2, 0 # Fallbacks
+    if os.path.exists(README_PATH):
+        with open(README_PATH, "r", encoding="utf-8") as f:
+            content = f.read()
+            
+            # Extract from table: | 2 / 19 Weeks |
+            week_match = re.search(r'\|\s*(\d+)\s*/\s*19\s*Weeks\s*\|', content)
+            if week_match: weeks = int(week_match.group(1))
+            
+            # Extract from table: | 15 / 152 Videos |
+            video_match = re.search(r'\|\s*(\d+)\s*/\s*152\s*Videos\s*\|', content)
+            if video_match: videos = int(video_match.group(1))
+            
+            # Extract from table: | 0 / 113 Exercises |
+            assignment_match = re.search(r'\|\s*(\d+)\s*/\s*113\s*(?:Exercises|Solved)\s*\|', content)
+            if assignment_match: assignments = int(assignment_match.group(1))
+            
+    return videos, weeks, assignments
+
+
+def run_sync(watched_videos=None, completed_weeks=None, assignments_solved=None):
     """Execute the progress sync across README and dashboard."""
     print("=" * 55)
     print(" 🔄 UPDATING COURSE PROGRESS")
     print("=" * 55)
 
     lessons_found, weeks_found = scan_lessons()
+    
+    # Read from README if args aren't explicitly provided
+    parsed_vid, parsed_week, parsed_assn = parse_readme_for_metrics()
+    watched_videos = watched_videos if watched_videos is not None else parsed_vid
+    completed_weeks = completed_weeks if completed_weeks is not None else parsed_week
+    assignments_solved = assignments_solved if assignments_solved is not None else parsed_assn
 
     video_pct = round((watched_videos / TOTAL_VIDEOS) * 100)
     week_pct = round((completed_weeks / TOTAL_WEEKS) * 100)
@@ -76,20 +103,23 @@ def run_sync(watched_videos=15, completed_weeks=2, assignments_solved=0):
             content
         )
 
-        # Update progress bars in table
+        # Update progress bars in table with accurate percentages
+        # Weeks
         content = re.sub(
-            r'title=Completed&width=200\)\s*\|\s*\d+\s*/\s*19',
-            f'title=Completed&width=200) | {completed_weeks} / 19',
+            r'!\[\d+%\]\(https://progress-bar\.dev/\d+/\?title=Completed&width=200\)\s*\|\s*\d+\s*/\s*19',
+            f'![{week_pct}%](https://progress-bar.dev/{week_pct}/?title=Completed&width=200) | {completed_weeks} / 19',
             content
         )
+        # Videos
         content = re.sub(
-            r'title=Watched&width=200\)\s*\|\s*\d+\s*/\s*152',
-            f'title=Watched&width=200) | {watched_videos} / 152',
+            r'!\[\d+%\]\(https://progress-bar\.dev/\d+/\?title=Watched&width=200\)\s*\|\s*\d+\s*/\s*152',
+            f'![{video_pct}%](https://progress-bar.dev/{video_pct}/?title=Watched&width=200) | {watched_videos} / 152',
             content
         )
+        # Assignments
         content = re.sub(
-            r'title=Solved&width=200\)\s*\|\s*\d+\s*/\s*113',
-            f'title=Solved&width=200) | {assignments_solved} / 113',
+            r'!\[\d+%\]\(https://progress-bar\.dev/\d+/\?title=Solved&width=200\)\s*\|\s*\d+\s*/\s*113',
+            f'![{assignment_pct}%](https://progress-bar.dev/{assignment_pct}/?title=Solved&width=200) | {assignments_solved} / 113',
             content
         )
 
@@ -106,9 +136,19 @@ def run_sync(watched_videos=15, completed_weeks=2, assignments_solved=0):
         dash = re.sub(r'data-percent="\d+"', f'data-percent="{video_pct}"', dash, count=1)
         dash = re.sub(r'data-target="\d+"', f'data-target="{video_pct}"', dash, count=1)
         dash = re.sub(r'\d+ / 152 Videos', f'{watched_videos} / 152 Videos', dash)
+        
+        # Second circle is for study plan
+        # We need to target the second circle. Using a specific replacement approach.
+        # But this is handled automatically if we rewrite index.html logic soon.
+        # Let's keep a generic safe replace for now.
+        dash = re.sub(r'\d+ / 19 Weeks', f'{completed_weeks} / 19 Weeks', dash)
         dash = re.sub(r'\d+ / 113 Solved', f'{assignments_solved} / 113 Solved', dash)
 
         # Update lesson completed status in JS array for videos watched
+        # First reset all to false
+        dash = re.sub(r'done: true', 'done: false', dash)
+        
+        # Then set up to watched_videos to true
         for v in range(1, watched_videos + 1):
             num_str = f"{v:03d}"
             dash = re.sub(
@@ -133,9 +173,9 @@ def run_sync(watched_videos=15, completed_weeks=2, assignments_solved=0):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Update course progress metrics.")
-    parser.add_argument("--videos", type=int, default=15, help="Number of videos watched (out of 152)")
-    parser.add_argument("--weeks", type=int, default=2, help="Number of weeks completed (out of 19)")
-    parser.add_argument("--assignments", type=int, default=0, help="Number of assignments solved (out of 113)")
+    parser.add_argument("--videos", type=int, default=None, help="Number of videos watched (out of 152)")
+    parser.add_argument("--weeks", type=int, default=None, help="Number of weeks completed (out of 19)")
+    parser.add_argument("--assignments", type=int, default=None, help="Number of assignments solved (out of 113)")
 
     args = parser.parse_args()
     run_sync(watched_videos=args.videos, completed_weeks=args.weeks, assignments_solved=args.assignments)
