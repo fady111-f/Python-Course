@@ -297,8 +297,8 @@ Python-Course/
 | 014 | ✅ | [String - Methods - Part 02](Lessons/Week%2002/014%20-%20String%20-%20Methods%20-%20Part%2002.py) |
 | 015 | ✅ | [String - Methods - Part 03](Lessons/Week%2002/015%20-%20String%20-%20Methods%20-%20Part%2003.py) |
 | 016 | ✅ | [String - Methods - Part 04](Lessons/Week%2002/016%20-%20String%20-%20Methods%20-%20Part%2004.py) |
-| 017 | ⬜ | [String - Formatting - Old Way](Lessons/Week%2002/017%20-%20String%20-%20Formatting%20-%20Old%20Way.py) |
-| 018 | ⬜ | [String - Formatting - New Way](Lessons/Week%2002/018%20-%20String%20-%20Formatting%20-%20New%20Way.py) |
+| 017 | ✅ | [String - Formatting - Old Way](Lessons/Week%2002/017%20-%20String%20-%20Formatting%20-%20Old%20Way.py) |
+| 018 | ✅ | [String - Formatting - New Way](Lessons/Week%2002/018%20-%20String%20-%20Formatting%20-%20New%20Way.py) |
 
 </details>
 
@@ -307,8 +307,8 @@ Python-Course/
 
 | # | Status | Lesson |
 | :---: | :---: | :--- |
-| 019 | ⬜ | [Numbers](Lessons/Week%2003/019%20-%20Numbers.py) |
-| 020 | ⬜ | [Arithmetic Operators](Lessons/Week%2003/020%20-%20Arithmetic%20Operators.py) |
+| 019 | ✅ | [Numbers](Lessons/Week%2003/019%20-%20Numbers.py) |
+| 020 | ✅ | [Arithmetic Operators](Lessons/Week%2003/020%20-%20Arithmetic%20Operators.py) |
 | 021 | ⬜ | [List](Lessons/Week%2003/021%20-%20List.py) |
 | 022 | ⬜ | [List - Methods - Part 01](Lessons/Week%2003/022%20-%20List%20-%20Methods%20-%20Part%2001.py) |
 | 023 | ⬜ | [List - Methods - Part 02](Lessons/Week%2003/023%20-%20List%20-%20Methods%20-%20Part%2002.py) |
