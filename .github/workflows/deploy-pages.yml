@@ -28,6 +28,7 @@ jobs:
         run: |
           mkdir -p docs/dashboard
           cp dashboard/index.html docs/dashboard/index.html
+          cp dashboard/index.css docs/dashboard/index.css
 
       - name: Build and Deploy to GitHub Pages
         run: |

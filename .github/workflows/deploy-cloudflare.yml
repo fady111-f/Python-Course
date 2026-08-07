@@ -40,6 +40,7 @@ jobs:
           pip install mkdocs mkdocs-material
           mkdir -p docs/dashboard
           cp dashboard/index.html docs/dashboard/index.html
+          cp dashboard/index.css docs/dashboard/index.css
           mkdocs build
 
       - name: Publish to Cloudflare Pages

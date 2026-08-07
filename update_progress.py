@@ -224,7 +224,13 @@ def run_sync():
         with open(DOCS_DASHBOARD_PATH, "w", encoding="utf-8") as f:
             f.write(dash)
 
-        print("  ✅ dashboard/index.html & docs/dashboard/index.html updated successfully.")
+        dashboard_css = os.path.join(REPO_ROOT, "dashboard", "index.css")
+        docs_css = os.path.join(REPO_ROOT, "docs", "dashboard", "index.css")
+        if os.path.exists(dashboard_css):
+            import shutil
+            shutil.copy(dashboard_css, docs_css)
+
+        print("  ✅ dashboard/index.html, index.css & docs/dashboard/ updated successfully.")
 
     print("\n🎉 Course progress sync complete!")
 
