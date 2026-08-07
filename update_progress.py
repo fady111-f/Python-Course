@@ -155,17 +155,42 @@ def run_sync():
         with open(DASHBOARD_PATH, "r", encoding="utf-8") as f:
             dash = f.read()
 
-        dash = re.sub(r'data-percent="\d+"', f'data-percent="{video_pct}"', dash, count=1)
-        dash = re.sub(r'data-target="\d+"', f'data-target="{video_pct}"', dash, count=1)
+        # --- Update stat card ring percentages ---
+        # Videos ring (first data-percent and data-target)
+        rings = list(re.finditer(r'data-percent="\d+"', dash))
+        targets = list(re.finditer(r'data-target="\d+"', dash))
+        pcts = [video_pct, week_pct, assignment_pct]
+        for i, pct in enumerate(pcts):
+            if i < len(rings):
+                dash = dash[:rings[i].start()] + f'data-percent="{pct}"' + dash[rings[i].end():]
+                # Recalculate positions after replacement
+                rings = list(re.finditer(r'data-percent="\d+"', dash))
+            if i < len(targets):
+                targets = list(re.finditer(r'data-target="\d+"', dash))
+                if i < len(targets):
+                    dash = dash[:targets[i].start()] + f'data-target="{pct}"' + dash[targets[i].end():]
+
+        # --- Update text details ---
         dash = re.sub(r'\d+ / 152 Videos', f'{watched_videos} / 152 Videos', dash)
         dash = re.sub(r'\d+ / 19 Weeks', f'{completed_weeks} / 19 Weeks', dash)
-        
         dash = re.sub(r'\d+ / 24 Topics', f'{completed_topics} / 24 Topics', dash)
-        
-        # Handle case where it might still say 113 Solved in dashboard somehow
         dash = re.sub(r'\d+ / 113 Solved', f'{completed_topics} / 24 Topics', dash)
 
-        # Update lesson completed status in JS array
+        # --- Update mini bar widths ---
+        dash = re.sub(
+            r'(stat-card__mini-fill--blue[^>]*style=")width:\s*\d+%',
+            f'\\1width: {video_pct}%', dash
+        )
+        dash = re.sub(
+            r'(stat-card__mini-fill--green[^>]*style=")width:\s*\d+%',
+            f'\\1width: {week_pct}%', dash
+        )
+        dash = re.sub(
+            r'(stat-card__mini-fill--orange[^>]*style=")width:\s*\d+%',
+            f'\\1width: {assignment_pct}%', dash
+        )
+
+        # --- Update lesson completed status in JS array ---
         dash = re.sub(r'done:\s*true', 'done: false', dash)
         for num_str in completed_lessons:
             dash = re.sub(
@@ -174,7 +199,7 @@ def run_sync():
                 dash
             )
 
-        # Update week statuses in dashboard JS array
+        # --- Update week statuses in dashboard JS array ---
         for block in week_blocks:
             week_match = re.search(r'<summary><strong>Week (\d+)</strong>', block.group(0))
             if week_match:
@@ -185,7 +210,7 @@ def run_sync():
                 if done == 0: dash_status = 'pending'
                 elif done == tot and tot > 0: dash_status = 'done'
                 else: dash_status = 'progress'
-                
+
                 dash = re.sub(
                     rf'\{{\s*num:\s*"{week_num}",\s*title:\s*"([^"]+)",\s*status:\s*"[^"]+"',
                     f'{{ num: "{week_num}", title: "\\1", status: "{dash_status}"',

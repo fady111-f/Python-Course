@@ -4,130 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Course — Progress Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="Track your progress through the Elzero Python Course with an interactive dashboard.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="bg-mesh"></div>
-    <!-- SVG Gradients -->
-    <svg width="0" height="0">
+    <!-- Animated Background -->
+    <div class="bg-noise"></div>
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+
+    <!-- SVG Gradient Definitions -->
+    <svg width="0" height="0" aria-hidden="true">
         <defs>
-            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#3b82f6"/>
-                <stop offset="100%" style="stop-color:#8b5cf6"/>
+            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#6366f1"/>
+                <stop offset="100%" style="stop-color:#06b6d4"/>
             </linearGradient>
-            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style="stop-color:#10b981"/>
-                <stop offset="100%" style="stop-color:#3b82f6"/>
+                <stop offset="100%" style="stop-color:#34d399"/>
             </linearGradient>
-            <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style="stop-color:#f59e0b"/>
-                <stop offset="100%" style="stop-color:#ef4444"/>
+                <stop offset="100%" style="stop-color:#f97316"/>
             </linearGradient>
         </defs>
     </svg>
 
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-logo">🐍</div>
-            <h1>Python Mastery Dashboard</h1>
-            <p>Track your progress through the Elzero Python Course</p>
-            <div class="header-badges">
-                <span class="badge blue">Python 3.12</span>
-                <span class="badge green">152 Videos</span>
-                <span class="badge orange">24 Topics</span>
+    <div class="app">
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <div class="navbar__inner">
+                <div class="navbar__brand">
+                    <span class="navbar__icon">🐍</span>
+                    <span class="navbar__title">PyMastery</span>
+                </div>
+                <div class="navbar__links">
+                    <a href="#progress" class="navbar__link active">Progress</a>
+                    <a href="#tools" class="navbar__link">Tools</a>
+                    <a href="#curriculum" class="navbar__link">Curriculum</a>
+                </div>
+                <a href="https://github.com/fady111-f/Python-Course" target="_blank" class="navbar__github" aria-label="GitHub Repository">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero" id="progress">
+            <div class="hero__content">
+                <div class="hero__badge">🎯 Learning in Progress</div>
+                <h1 class="hero__title">
+                    <span class="hero__title-line">Python</span>
+                    <span class="hero__title-line hero__title-line--accent">Mastery</span>
+                    <span class="hero__title-line">Dashboard</span>
+                </h1>
+                <p class="hero__subtitle">Tracking every step of your journey through the Elzero Python Course — from fundamentals to advanced OOP & databases.</p>
+                <div class="hero__tags">
+                    <span class="tag tag--blue"><span class="tag__dot"></span>Python 3.12</span>
+                    <span class="tag tag--green"><span class="tag__dot"></span>152 Videos</span>
+                    <span class="tag tag--orange"><span class="tag__dot"></span>24 Topics</span>
+                    <span class="tag tag--purple"><span class="tag__dot"></span>19 Weeks</span>
+                </div>
             </div>
         </header>
 
-        <!-- Progress Rings -->
-        <section class="progress-section">
-            <div class="progress-card">
-                <div class="ring-container">
-                    <svg viewBox="0 0 130 130">
-                        <circle class="ring-bg" cx="65" cy="65" r="60"/>
-                        <circle class="ring-progress blue" cx="65" cy="65" r="60" data-percent="13"/>
-                    </svg>
-                    <div class="ring-label">
-                        <span class="ring-percent blue" data-target="13">0</span>
-                        <span class="ring-sub">PERCENT</span>
-                    </div>
-                </div>
-                <div class="progress-title">Videos Watched</div>
-                <div class="progress-detail">20 / 152 Videos</div>
+        <!-- Overall Progress Bar -->
+        <section class="overall-progress">
+            <div class="overall-progress__bar">
+                <div class="overall-progress__fill" id="overallFill"></div>
             </div>
-
-            <div class="progress-card">
-                <div class="ring-container">
-                    <svg viewBox="0 0 130 130">
-                        <circle class="ring-bg" cx="65" cy="65" r="60"/>
-                        <circle class="ring-progress green" cx="65" cy="65" r="60" data-percent="10"/>
-                    </svg>
-                    <div class="ring-label">
-                        <span class="ring-percent green" data-target="10">0</span>
-                        <span class="ring-sub">PERCENT</span>
-                    </div>
-                </div>
-                <div class="progress-title">Study Plan</div>
-                <div class="progress-detail">2 / 19 Weeks</div>
-            </div>
-
-            <div class="progress-card">
-                <div class="ring-container">
-                    <svg viewBox="0 0 130 130">
-                        <circle class="ring-bg" cx="65" cy="65" r="60"/>
-                        <circle class="ring-progress orange" cx="65" cy="65" r="60" data-percent="0"/>
-                    </svg>
-                    <div class="ring-label">
-                        <span class="ring-percent orange" data-target="0">0</span>
-                        <span class="ring-sub">PERCENT</span>
-                    </div>
-                </div>
-                <div class="progress-title">Assignments</div>
-                <div class="progress-detail">0 / 24 Topics</div>
+            <div class="overall-progress__info">
+                <span class="overall-progress__label">Overall Course Completion</span>
+                <span class="overall-progress__percent" id="overallPercent">0%</span>
             </div>
         </section>
 
-        <!-- Quick Links -->
-        <h2 class="section-title">⚡ Quick Access</h2>
-        <div class="features-grid">
-            <a class="feature-card" href="../docs/cheatsheets/01_fundamentals/" id="linkDocs">
-                <div class="feature-icon">📚</div>
-                <h3>Docs & Cheat Sheets</h3>
-                <p>Full MkDocs Material documentation & topic cheat sheets</p>
-            </a>
-            <a class="feature-card" href="../projects/">
-                <div class="feature-icon">🚀</div>
-                <h3>Mini Projects</h3>
-                <p>Hands-on projects reinforcing every 5 videos</p>
-            </a>
-            <a class="feature-card" href="javascript:void(0)" onclick="alert('Run `python flashcards/flashcards.py` in your terminal to start flashcards!')">
-                <div class="feature-icon">🧠</div>
-                <h3>Flashcard CLI</h3>
-                <p>Spaced repetition CLI tool for memorizing concepts</p>
-            </a>
-            <a class="feature-card" href="javascript:void(0)" onclick="alert('Run `python course_runner.py` in your terminal to open CLI runner!')">
-                <div class="feature-icon">🖥️</div>
-                <h3>Course CLI</h3>
-                <p>Interactive terminal dashboard to run lessons & quizzes</p>
-            </a>
-        </div>
+        <!-- Stats Cards -->
+        <section class="stats-grid">
+            <div class="stat-card stat-card--videos">
+                <div class="stat-card__ring-wrap">
+                    <svg class="stat-card__ring" viewBox="0 0 120 120">
+                        <circle class="stat-card__ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="stat-card__ring-fill stat-card__ring-fill--blue" cx="60" cy="60" r="52" data-percent="13"/>
+                    </svg>
+                    <div class="stat-card__ring-text">
+                        <span class="stat-card__ring-value" data-target="13">0</span>
+                        <span class="stat-card__ring-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-card__info">
+                    <h3 class="stat-card__title">Videos Watched</h3>
+                    <p class="stat-card__detail">20 / 152 Videos</p>
+                    <div class="stat-card__mini-bar">
+                        <div class="stat-card__mini-fill stat-card__mini-fill--blue" style="width: 13%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-card--weeks">
+                <div class="stat-card__ring-wrap">
+                    <svg class="stat-card__ring" viewBox="0 0 120 120">
+                        <circle class="stat-card__ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="stat-card__ring-fill stat-card__ring-fill--green" cx="60" cy="60" r="52" data-percent="11"/>
+                    </svg>
+                    <div class="stat-card__ring-text">
+                        <span class="stat-card__ring-value" data-target="11">0</span>
+                        <span class="stat-card__ring-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-card__info">
+                    <h3 class="stat-card__title">Study Plan</h3>
+                    <p class="stat-card__detail">2 / 19 Weeks</p>
+                    <div class="stat-card__mini-bar">
+                        <div class="stat-card__mini-fill stat-card__mini-fill--green" style="width: 11%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-card--assignments">
+                <div class="stat-card__ring-wrap">
+                    <svg class="stat-card__ring" viewBox="0 0 120 120">
+                        <circle class="stat-card__ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="stat-card__ring-fill stat-card__ring-fill--orange" cx="60" cy="60" r="52" data-percent="0"/>
+                    </svg>
+                    <div class="stat-card__ring-text">
+                        <span class="stat-card__ring-value" data-target="0">0</span>
+                        <span class="stat-card__ring-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-card__info">
+                    <h3 class="stat-card__title">Assignments</h3>
+                    <p class="stat-card__detail">0 / 24 Topics</p>
+                    <div class="stat-card__mini-bar">
+                        <div class="stat-card__mini-fill stat-card__mini-fill--orange" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Tools -->
+        <section class="section" id="tools">
+            <div class="section__header">
+                <h2 class="section__title">Quick Tools</h2>
+                <p class="section__subtitle">Everything you need to supercharge your learning</p>
+            </div>
+            <div class="tools-grid">
+                <a class="tool-card" href="../docs/cheatsheets/01_fundamentals/" id="linkDocs">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--blue">
+                        <span class="tool-card__icon">📚</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Docs & Cheat Sheets</h3>
+                        <p class="tool-card__desc">Full documentation & topic cheat sheets</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+                <a class="tool-card" href="../projects/">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--green">
+                        <span class="tool-card__icon">🚀</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Mini Projects</h3>
+                        <p class="tool-card__desc">Hands-on projects reinforcing every 5 videos</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+                <a class="tool-card" href="javascript:void(0)" onclick="alert('Run: python flashcards/flashcards.py')">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--purple">
+                        <span class="tool-card__icon">🧠</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Flashcard CLI</h3>
+                        <p class="tool-card__desc">Spaced repetition tool for memorizing concepts</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+                <a class="tool-card" href="javascript:void(0)" onclick="alert('Run: python course_runner.py')">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--orange">
+                        <span class="tool-card__icon">🖥️</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Course CLI</h3>
+                        <p class="tool-card__desc">Interactive terminal to run lessons & quizzes</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+            </div>
+        </section>
         <script>
-            // Adapt docs link if served over HTTP
             if (window.location.protocol.startsWith('http')) {
                 const docsLink = document.getElementById('linkDocs');
                 if (docsLink) docsLink.href = '/docs/';
             }
         </script>
 
-        <!-- Weeks -->
-        <h2 class="section-title">📚 Course Weeks</h2>
-        <div class="weeks-grid" id="weeksGrid"></div>
+        <!-- Curriculum -->
+        <section class="section" id="curriculum">
+            <div class="section__header">
+                <h2 class="section__title">Curriculum</h2>
+                <p class="section__subtitle">15 weeks of structured Python learning</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="done">Completed</button>
+                <button class="filter-tab" data-filter="progress">In Progress</button>
+                <button class="filter-tab" data-filter="pending">Not Started</button>
+            </div>
+
+            <div class="weeks-list" id="weeksList"></div>
+        </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Based on <a href="https://elzero.org/study/mastering-python-study-plan/" target="_blank">Mastering Python</a> by <a href="https://www.youtube.com/user/OsamaElzero" target="_blank">Osama Elzero</a></p>
-            <p style="margin-top: 0.5rem;">Made with ❤️ for learning Python</p>
+            <div class="footer__inner">
+                <p>Based on <a href="https://elzero.org/study/mastering-python-study-plan/" target="_blank">Mastering Python</a> by <a href="https://www.youtube.com/user/OsamaElzero" target="_blank">Osama Elzero</a></p>
+                <p class="footer__heart">Made with ❤️ for learning Python</p>
+            </div>
         </footer>
     </div>
 
@@ -245,64 +342,159 @@
         ]},
     ];
 
-    // ===== RENDER WEEKS =====
-    const grid = document.getElementById('weeksGrid');
+    // ===== RENDER =====
+    const list = document.getElementById('weeksList');
+    let activeFilter = 'all';
 
-    weeks.forEach(week => {
-        const doneCount = week.lessons.filter(l => l.done).length;
-        const totalCount = week.lessons.length;
-        const statusLabel = week.status === 'done' ? '✅ Done' : week.status === 'progress' ? `🔄 ${doneCount}/${totalCount}` : '⬜ Pending';
+    function renderWeeks(filter) {
+        list.innerHTML = '';
+        const filtered = filter === 'all' ? weeks : weeks.filter(w => w.status === filter);
 
-        const card = document.createElement('div');
-        card.className = 'week-card';
-        card.innerHTML = `
-            <div class="week-header" onclick="this.parentElement.classList.toggle('open')">
-                <div class="week-info">
-                    <div class="week-num ${week.status}">W${week.num}</div>
-                    <div>
-                        <div class="week-title">${week.title}</div>
-                        <div class="week-subtitle">${totalCount} lessons</div>
+        if (filtered.length === 0) {
+            list.innerHTML = '<div class="empty-state"><span class="empty-state__icon">🔍</span><p>No weeks match this filter.</p></div>';
+            return;
+        }
+
+        filtered.forEach((week, idx) => {
+            const doneCount = week.lessons.filter(l => l.done).length;
+            const totalCount = week.lessons.length;
+            const pct = Math.round((doneCount / totalCount) * 100);
+            const statusEmoji = week.status === 'done' ? '✅' : week.status === 'progress' ? '🔄' : '⬜';
+            const statusText = week.status === 'done' ? 'Completed' : week.status === 'progress' ? `${doneCount}/${totalCount}` : 'Not Started';
+
+            const card = document.createElement('div');
+            card.className = `week-card week-card--${week.status}`;
+            card.style.animationDelay = `${idx * 0.05}s`;
+
+            card.innerHTML = `
+                <div class="week-card__header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="week-card__left">
+                        <div class="week-card__number week-card__number--${week.status}">
+                            <span>W${week.num}</span>
+                        </div>
+                        <div class="week-card__meta">
+                            <h3 class="week-card__title">${week.title}</h3>
+                            <span class="week-card__count">${totalCount} lessons</span>
+                        </div>
+                    </div>
+                    <div class="week-card__right">
+                        <div class="week-card__progress-mini">
+                            <div class="week-card__progress-track">
+                                <div class="week-card__progress-bar week-card__progress-bar--${week.status}" style="width:${pct}%"></div>
+                            </div>
+                            <span class="week-card__pct">${pct}%</span>
+                        </div>
+                        <span class="week-card__badge week-card__badge--${week.status}">${statusEmoji} ${statusText}</span>
+                        <svg class="week-card__chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </div>
                 </div>
-                <div style="display:flex;align-items:center;gap:0.5rem">
-                    <span class="week-status ${week.status}">${statusLabel}</span>
-                    <span class="chevron">▼</span>
-                </div>
-            </div>
-            <div class="week-lessons">
-                ${week.lessons.map(l => `
-                    <div class="lesson-item">
-                        <div class="lesson-status ${l.done ? 'done' : 'pending'}">${l.done ? '✓' : ''}</div>
-                        <span class="lesson-num">${l.num}</span>
-                        <span class="lesson-name ${l.done ? 'done' : ''}">${l.name}</span>
+                <div class="week-card__body">
+                    <div class="week-card__lessons">
+                        ${week.lessons.map((l, i) => `
+                            <div class="lesson lesson--${l.done ? 'done' : 'pending'}" style="animation-delay:${i * 0.03}s">
+                                <div class="lesson__check ${l.done ? 'lesson__check--done' : ''}">
+                                    ${l.done ? '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+                                </div>
+                                <span class="lesson__num">${l.num}</span>
+                                <span class="lesson__name">${l.name}</span>
+                            </div>
+                        `).join('')}
                     </div>
-                `).join('')}
-            </div>
-        `;
-        grid.appendChild(card);
+                </div>
+            `;
+            list.appendChild(card);
+        });
+    }
+
+    renderWeeks('all');
+
+    // Filter tabs
+    document.getElementById('filterTabs').addEventListener('click', e => {
+        if (!e.target.classList.contains('filter-tab')) return;
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        activeFilter = e.target.dataset.filter;
+        renderWeeks(activeFilter);
     });
 
-    // ===== ANIMATE PROGRESS RINGS =====
-    setTimeout(() => {
-        document.querySelectorAll('.ring-progress').forEach(ring => {
-            const percent = parseInt(ring.dataset.percent);
-            const circumference = 2 * Math.PI * 60; // r=60
-            const offset = circumference - (percent / 100) * circumference;
-            ring.style.strokeDashoffset = offset;
+    // ===== ANIMATE RINGS =====
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateRings();
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.stats-grid');
+    if (statsSection) observer.observe(statsSection);
+
+    function animateRings() {
+        document.querySelectorAll('.stat-card__ring-fill').forEach(ring => {
+            const pct = parseInt(ring.dataset.percent);
+            const circ = 2 * Math.PI * 52;
+            const offset = circ - (pct / 100) * circ;
+            ring.style.strokeDasharray = circ;
+            ring.style.strokeDashoffset = circ;
+            requestAnimationFrame(() => {
+                ring.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.22, 1, 0.36, 1)';
+                ring.style.strokeDashoffset = offset;
+            });
         });
 
-        document.querySelectorAll('.ring-percent').forEach(el => {
+        document.querySelectorAll('.stat-card__ring-value').forEach(el => {
             const target = parseInt(el.dataset.target);
             let current = 0;
-            const duration = 1500;
-            const step = target / (duration / 16);
+            const step = Math.max(target / 90, 0.5);
             const timer = setInterval(() => {
                 current += step;
                 if (current >= target) { current = target; clearInterval(timer); }
-                el.textContent = Math.round(current) + '%';
+                el.textContent = Math.round(current);
             }, 16);
         });
-    }, 300);
+
+        // Overall progress
+        const totalDone = weeks.reduce((sum, w) => sum + w.lessons.filter(l => l.done).length, 0);
+        const totalAll = weeks.reduce((sum, w) => sum + w.lessons.length, 0);
+        const overallPct = Math.round((totalDone / totalAll) * 100);
+        const fill = document.getElementById('overallFill');
+        const pctEl = document.getElementById('overallPercent');
+        if (fill) fill.style.width = overallPct + '%';
+        if (pctEl) {
+            let c = 0;
+            const s = Math.max(overallPct / 90, 0.5);
+            const t = setInterval(() => {
+                c += s;
+                if (c >= overallPct) { c = overallPct; clearInterval(t); }
+                pctEl.textContent = Math.round(c) + '%';
+            }, 16);
+        }
+    }
+
+    // ===== STICKY NAVBAR =====
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        const curr = window.scrollY;
+        if (curr > 80) {
+            nav.classList.add('navbar--scrolled');
+        } else {
+            nav.classList.remove('navbar--scrolled');
+        }
+        lastScroll = curr;
+    });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('.navbar__link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.querySelectorAll('.navbar__link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
     </script>
 </body>
 </html>
