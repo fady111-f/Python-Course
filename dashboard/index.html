@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Course — Progress Dashboard</title>
+    <meta name="description" content="Track your progress through the Elzero Python Course with an interactive dashboard.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-noise"></div>
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+
+    <!-- SVG Gradient Definitions -->
+    <svg width="0" height="0" aria-hidden="true">
+        <defs>
+            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#6366f1"/>
+                <stop offset="100%" style="stop-color:#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10b981"/>
+                <stop offset="100%" style="stop-color:#34d399"/>
+            </linearGradient>
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f59e0b"/>
+                <stop offset="100%" style="stop-color:#f97316"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="app">
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <div class="navbar__inner">
+                <div class="navbar__brand">
+                    <span class="navbar__icon">🐍</span>
+                    <span class="navbar__title">PyMastery</span>
+                </div>
+                <div class="navbar__links">
+                    <a href="#progress" class="navbar__link active">Progress</a>
+                    <a href="#tools" class="navbar__link">Tools</a>
+                    <a href="#curriculum" class="navbar__link">Curriculum</a>
+                </div>
+                <a href="https://github.com/fady111-f/Python-Course" target="_blank" class="navbar__github" aria-label="GitHub Repository">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero" id="progress">
+            <div class="hero__content">
+                <div class="hero__badge">🎯 Learning in Progress</div>
+                <h1 class="hero__title">
+                    <span class="hero__title-line">Python</span>
+                    <span class="hero__title-line hero__title-line--accent">Mastery</span>
+                    <span class="hero__title-line">Dashboard</span>
+                </h1>
+                <p class="hero__subtitle">Tracking every step of your journey through the Elzero Python Course — from fundamentals to advanced OOP & databases.</p>
+                <div class="hero__tags">
+                    <span class="tag tag--blue"><span class="tag__dot"></span>Python 3.12</span>
+                    <span class="tag tag--green"><span class="tag__dot"></span>152 Videos</span>
+                    <span class="tag tag--orange"><span class="tag__dot"></span>24 Topics</span>
+                    <span class="tag tag--purple"><span class="tag__dot"></span>19 Weeks</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overall Progress Bar -->
+        <section class="overall-progress">
+            <div class="overall-progress__bar">
+                <div class="overall-progress__fill" id="overallFill"></div>
+            </div>
+            <div class="overall-progress__info">
+                <span class="overall-progress__label">Overall Course Completion</span>
+                <span class="overall-progress__percent" id="overallPercent">0%</span>
+            </div>
+        </section>
+
+        <!-- Stats Cards -->
+        <section class="stats-grid">
+            <div class="stat-card stat-card--videos">
+                <div class="stat-card__ring-wrap">
+                    <svg class="stat-card__ring" viewBox="0 0 120 120" width="80" height="80">
+                        <circle class="stat-card__ring-bg" cx="60" cy="60" r="52" fill="none"/>
+                        <circle class="stat-card__ring-fill stat-card__ring-fill--blue" cx="60" cy="60" r="52" fill="none" data-percent="13"/>
+                    </svg>
+                    <div class="stat-card__ring-text">
+                        <span class="stat-card__ring-value" data-target="13">0</span>
+                        <span class="stat-card__ring-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-card__info">
+                    <h3 class="stat-card__title">Videos Watched</h3>
+                    <p class="stat-card__detail">20 / 152 Videos</p>
+                    <div class="stat-card__mini-bar">
+                        <div class="stat-card__mini-fill stat-card__mini-fill--blue" style="width: 13%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-card--weeks">
+                <div class="stat-card__ring-wrap">
+                    <svg class="stat-card__ring" viewBox="0 0 120 120" width="80" height="80">
+                        <circle class="stat-card__ring-bg" cx="60" cy="60" r="52" fill="none"/>
+                        <circle class="stat-card__ring-fill stat-card__ring-fill--green" cx="60" cy="60" r="52" fill="none" data-percent="11"/>
+                    </svg>
+                    <div class="stat-card__ring-text">
+                        <span class="stat-card__ring-value" data-target="11">0</span>
+                        <span class="stat-card__ring-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-card__info">
+                    <h3 class="stat-card__title">Study Plan</h3>
+                    <p class="stat-card__detail">2 / 19 Weeks</p>
+                    <div class="stat-card__mini-bar">
+                        <div class="stat-card__mini-fill stat-card__mini-fill--green" style="width: 11%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-card--assignments">
+                <div class="stat-card__ring-wrap">
+                    <svg class="stat-card__ring" viewBox="0 0 120 120" width="80" height="80">
+                        <circle class="stat-card__ring-bg" cx="60" cy="60" r="52" fill="none"/>
+                        <circle class="stat-card__ring-fill stat-card__ring-fill--orange" cx="60" cy="60" r="52" fill="none" data-percent="0"/>
+                    </svg>
+                    <div class="stat-card__ring-text">
+                        <span class="stat-card__ring-value" data-target="0">0</span>
+                        <span class="stat-card__ring-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-card__info">
+                    <h3 class="stat-card__title">Assignments</h3>
+                    <p class="stat-card__detail">0 / 24 Topics</p>
+                    <div class="stat-card__mini-bar">
+                        <div class="stat-card__mini-fill stat-card__mini-fill--orange" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Tools -->
+        <section class="section" id="tools">
+            <div class="section__header">
+                <h2 class="section__title">Quick Tools</h2>
+                <p class="section__subtitle">Everything you need to supercharge your learning</p>
+            </div>
+            <div class="tools-grid">
+                <a class="tool-card" href="../docs/cheatsheets/01_fundamentals/" id="linkDocs">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--blue">
+                        <span class="tool-card__icon">📚</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Docs & Cheat Sheets</h3>
+                        <p class="tool-card__desc">Full documentation & topic cheat sheets</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+                <a class="tool-card" href="../projects/">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--green">
+                        <span class="tool-card__icon">🚀</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Mini Projects</h3>
+                        <p class="tool-card__desc">Hands-on projects reinforcing every 5 videos</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+                <a class="tool-card" href="javascript:void(0)" onclick="alert('Run: python flashcards/flashcards.py')">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--purple">
+                        <span class="tool-card__icon">🧠</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Flashcard CLI</h3>
+                        <p class="tool-card__desc">Spaced repetition tool for memorizing concepts</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+                <a class="tool-card" href="javascript:void(0)" onclick="alert('Run: python course_runner.py')">
+                    <div class="tool-card__icon-wrap tool-card__icon-wrap--orange">
+                        <span class="tool-card__icon">🖥️</span>
+                    </div>
+                    <div class="tool-card__content">
+                        <h3 class="tool-card__title">Course CLI</h3>
+                        <p class="tool-card__desc">Interactive terminal to run lessons & quizzes</p>
+                    </div>
+                    <span class="tool-card__arrow">→</span>
+                </a>
+            </div>
+        </section>
+        <script>
+            if (window.location.protocol.startsWith('http')) {
+                const docsLink = document.getElementById('linkDocs');
+                if (docsLink) docsLink.href = '/docs/';
+            }
+        </script>
+
+        <!-- Curriculum -->
+        <section class="section" id="curriculum">
+            <div class="section__header">
+                <h2 class="section__title">Curriculum</h2>
+                <p class="section__subtitle">15 weeks of structured Python learning</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="done">Completed</button>
+                <button class="filter-tab" data-filter="progress">In Progress</button>
+                <button class="filter-tab" data-filter="pending">Not Started</button>
+            </div>
+
+            <div class="weeks-list" id="weeksList"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer__inner">
+                <p>Based on <a href="https://elzero.org/study/mastering-python-study-plan/" target="_blank">Mastering Python</a> by <a href="https://www.youtube.com/user/OsamaElzero" target="_blank">Osama Elzero</a></p>
+                <p class="footer__heart">Made with ❤️ for learning Python</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    // ===== COURSE DATA =====
+    const weeks = [
+        { num: "01", title: "Introduction & Variables", status: "done", lessons: [
+            { num: "001", name: "Introduction & What Is Python?", done: true },
+            { num: "002", name: "What I Need?", done: true },
+            { num: "003", name: "Syntax & Your First App", done: true },
+            { num: "004", name: "Comments", done: true },
+            { num: "005", name: "Dealing With Data In Python", done: true },
+            { num: "006", name: "Some Data Types Overview", done: true },
+            { num: "007", name: "Variables - Part 01", done: true },
+            { num: "008", name: "Variables - Part 02", done: true },
+            { num: "009", name: "Escape Sequences Characters", done: true },
+            { num: "010", name: "Concatenation & Training", done: true },
+        ]},
+        { num: "02", title: "Strings & Methods", status: "done", lessons: [
+            { num: "011", name: "String", done: true },
+            { num: "012", name: "String - Indexing & Slicing", done: true },
+            { num: "013", name: "String - Methods - Part 01", done: true },
+            { num: "014", name: "String - Methods - Part 02", done: true },
+            { num: "015", name: "String - Methods - Part 03", done: true },
+            { num: "016", name: "String - Methods - Part 04", done: true },
+            { num: "017", name: "String - Formatting - Old Way", done: true },
+            { num: "018", name: "String - Formatting - New Way", done: true },
+        ]},
+        { num: "03", title: "Numbers, Lists & Tuples", status: "progress", lessons: [
+            { num: "019", name: "Numbers", done: true },
+            { num: "020", name: "Arithmetic Operators", done: true },
+            { num: "021", name: "List", done: false },
+            { num: "022", name: "List - Methods - Part 01", done: false },
+            { num: "023", name: "List - Methods - Part 02", done: false },
+            { num: "024", name: "Tuple - Methods - Part 01", done: false },
+            { num: "025", name: "Tuple - Methods - Part 02", done: false },
+        ]},
+        { num: "04", title: "Sets & Dictionaries", status: "pending", lessons: [
+            { num: "026", name: "Set", done: false }, { num: "027", name: "Set - Methods Part 01", done: false },
+            { num: "028", name: "Set - Methods Part 02", done: false }, { num: "029", name: "Set - Methods Part 03", done: false },
+            { num: "030", name: "Dictionary", done: false }, { num: "031", name: "Dictionary - Methods Part 01", done: false },
+            { num: "032", name: "Dictionary - Methods Part 02", done: false },
+        ]},
+        { num: "05", title: "Operators, Input & Practice", status: "pending", lessons: [
+            { num: "033", name: "Boolean", done: false }, { num: "034", name: "Boolean Operators", done: false },
+            { num: "035", name: "Assignment Operators", done: false }, { num: "036", name: "Comparison Operators", done: false },
+            { num: "037", name: "Type Conversion", done: false }, { num: "038", name: "User Input", done: false },
+            { num: "039", name: "Email Slice - Practical", done: false }, { num: "040", name: "Your Age In Full Details", done: false },
+        ]},
+        { num: "06", title: "Control Flow", status: "pending", lessons: [
+            { num: "041", name: "If & Elif & Else", done: false }, { num: "042", name: "Nested If & Training", done: false },
+            { num: "043", name: "Ternary Conditional", done: false }, { num: "044", name: "Calculate Age Advanced", done: false },
+            { num: "045", name: "Membership Operators", done: false }, { num: "046", name: "Membership Control", done: false },
+        ]},
+        { num: "07", title: "Loops", status: "pending", lessons: [
+            { num: "047", name: "While - Else", done: false }, { num: "048", name: "While - Printing Friends", done: false },
+            { num: "049", name: "While - Bookmarks Manager", done: false }, { num: "050", name: "While - Password Checker", done: false },
+            { num: "051", name: "For - Else", done: false }, { num: "052", name: "For - Training", done: false },
+            { num: "053", name: "For - Nested Loop", done: false }, { num: "054", name: "Break & Continue & Pass", done: false },
+            { num: "055", name: "Advanced Dictionary", done: false },
+        ]},
+        { num: "08", title: "Functions", status: "pending", lessons: [
+            { num: "056", name: "Function - Return", done: false }, { num: "057", name: "Parameters & Arguments", done: false },
+            { num: "058", name: "Packing & Unpacking Args", done: false }, { num: "059", name: "Default Parameters", done: false },
+            { num: "060", name: "Packing Keyword Args", done: false }, { num: "061", name: "Packing Training", done: false },
+            { num: "062", name: "Scope", done: false }, { num: "063", name: "Recursion", done: false },
+            { num: "064", name: "Lambda", done: false },
+        ]},
+        { num: "09", title: "File Handling", status: "pending", lessons: [
+            { num: "065", name: "File Handling - Intro", done: false }, { num: "066", name: "Read File", done: false },
+            { num: "067", name: "Write & Append", done: false }, { num: "068", name: "Important Information", done: false },
+        ]},
+        { num: "10", title: "Built-in Functions", status: "pending", lessons: [
+            { num: "069", name: "Built-In Functions 01", done: false }, { num: "070", name: "Built-In Functions 02", done: false },
+            { num: "071", name: "Built-In Functions 03", done: false }, { num: "072", name: "Map", done: false },
+            { num: "073", name: "Filter", done: false }, { num: "074", name: "Reduce", done: false },
+            { num: "075", name: "Built-In Functions 07", done: false },
+        ]},
+        { num: "11", title: "Modules, DateTime & Decorators", status: "pending", lessons: [
+            { num: "076", name: "Modules - Intro", done: false }, { num: "077", name: "Create Your Module", done: false },
+            { num: "078", name: "External Packages", done: false }, { num: "079", name: "Date & Time Intro", done: false },
+            { num: "080", name: "Formatting Date", done: false }, { num: "081", name: "Iterable vs Iterator", done: false },
+            { num: "082", name: "Generators", done: false }, { num: "083", name: "Decorators Intro", done: false },
+            { num: "084", name: "Decorators - Params", done: false }, { num: "085", name: "Decorators - Speed Test", done: false },
+        ]},
+        { num: "12", title: "Code Quality & Errors", status: "pending", lessons: [
+            { num: "086", name: "Zip Practical", done: false }, { num: "087", name: "Pillow", done: false },
+            { num: "088", name: "Docstrings", done: false }, { num: "089", name: "Pylint", done: false },
+            { num: "090", name: "Exceptions Raising", done: false }, { num: "091", name: "Try Except Else Finally", done: false },
+            { num: "092", name: "Advanced Exceptions", done: false }, { num: "093", name: "Debugging", done: false },
+            { num: "094", name: "Type Hinting", done: false },
+        ]},
+        { num: "13", title: "Regular Expressions", status: "pending", lessons: [
+            { num: "095", name: "Regex - Intro", done: false }, { num: "096", name: "Quantifiers", done: false },
+            { num: "097", name: "Character Classes", done: false }, { num: "098", name: "Assertions & Email", done: false },
+            { num: "099", name: "Logical Or & Escaping", done: false }, { num: "100", name: "re Search & FindAll", done: false },
+            { num: "101", name: "re Split & Sub", done: false }, { num: "102", name: "Groups & Flags", done: false },
+        ]},
+        { num: "14", title: "Object-Oriented Programming", status: "pending", lessons: [
+            { num: "103", name: "OOP Intro", done: false }, { num: "104", name: "Class Syntax", done: false },
+            { num: "105", name: "Instance Attrs 01", done: false }, { num: "106", name: "Instance Attrs 02", done: false },
+            { num: "107", name: "Class Attributes", done: false }, { num: "108", name: "Class & Static Methods", done: false },
+            { num: "109", name: "Magic Methods", done: false }, { num: "110", name: "Inheritance", done: false },
+            { num: "111", name: "Multiple Inheritance", done: false }, { num: "112", name: "Polymorphism", done: false },
+            { num: "113", name: "Encapsulation", done: false }, { num: "114", name: "Getters & Setters", done: false },
+            { num: "115", name: "@Property Decorator", done: false }, { num: "116", name: "Abstract Base Class", done: false },
+        ]},
+        { num: "15", title: "SQLite Database", status: "pending", lessons: [
+            { num: "117", name: "Database Intro", done: false }, { num: "118", name: "Create DB & Connect", done: false },
+            { num: "119", name: "Insert Data", done: false }, { num: "120", name: "Retrieve Data", done: false },
+            { num: "121", name: "Training On Everything", done: false }, { num: "122", name: "Update & Delete", done: false },
+            { num: "123", name: "Skills App 01", done: false }, { num: "124", name: "Skills App 02", done: false },
+            { num: "125", name: "Skills App 03", done: false }, { num: "126", name: "Skills App 04", done: false },
+            { num: "127", name: "Important Info", done: false },
+        ]},
+    ];
+
+    // ===== RENDER =====
+    const list = document.getElementById('weeksList');
+    let activeFilter = 'all';
+
+    function renderWeeks(filter) {
+        list.innerHTML = '';
+        const filtered = filter === 'all' ? weeks : weeks.filter(w => w.status === filter);
+
+        if (filtered.length === 0) {
+            list.innerHTML = '<div class="empty-state"><span class="empty-state__icon">🔍</span><p>No weeks match this filter.</p></div>';
+            return;
+        }
+
+        filtered.forEach((week, idx) => {
+            const doneCount = week.lessons.filter(l => l.done).length;
+            const totalCount = week.lessons.length;
+            const pct = Math.round((doneCount / totalCount) * 100);
+            const statusEmoji = week.status === 'done' ? '✅' : week.status === 'progress' ? '🔄' : '⬜';
+            const statusText = week.status === 'done' ? 'Completed' : week.status === 'progress' ? `${doneCount}/${totalCount}` : 'Not Started';
+
+            const card = document.createElement('div');
+            card.className = `week-card week-card--${week.status}`;
+            card.style.animationDelay = `${idx * 0.05}s`;
+
+            card.innerHTML = `
+                <div class="week-card__header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="week-card__left">
+                        <div class="week-card__number week-card__number--${week.status}">
+                            <span>W${week.num}</span>
+                        </div>
+                        <div class="week-card__meta">
+                            <h3 class="week-card__title">${week.title}</h3>
+                            <span class="week-card__count">${totalCount} lessons</span>
+                        </div>
+                    </div>
+                    <div class="week-card__right">
+                        <div class="week-card__progress-mini">
+                            <div class="week-card__progress-track">
+                                <div class="week-card__progress-bar week-card__progress-bar--${week.status}" style="width:${pct}%"></div>
+                            </div>
+                            <span class="week-card__pct">${pct}%</span>
+                        </div>
+                        <span class="week-card__badge week-card__badge--${week.status}">${statusEmoji} ${statusText}</span>
+                        <svg class="week-card__chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+                <div class="week-card__body">
+                    <div class="week-card__lessons">
+                        ${week.lessons.map((l, i) => `
+                            <div class="lesson lesson--${l.done ? 'done' : 'pending'}" style="animation-delay:${i * 0.03}s">
+                                <div class="lesson__check ${l.done ? 'lesson__check--done' : ''}">
+                                    ${l.done ? '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+                                </div>
+                                <span class="lesson__num">${l.num}</span>
+                                <span class="lesson__name">${l.name}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            list.appendChild(card);
+        });
+    }
+
+    renderWeeks('all');
+
+    // Filter tabs
+    document.getElementById('filterTabs').addEventListener('click', e => {
+        if (!e.target.classList.contains('filter-tab')) return;
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        activeFilter = e.target.dataset.filter;
+        renderWeeks(activeFilter);
+    });
+
+    // ===== ANIMATE RINGS =====
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateRings();
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.stats-grid');
+    if (statsSection) observer.observe(statsSection);
+
+    function animateRings() {
+        document.querySelectorAll('.stat-card__ring-fill').forEach(ring => {
+            const pct = parseInt(ring.dataset.percent);
+            const circ = 2 * Math.PI * 52;
+            const offset = circ - (pct / 100) * circ;
+            ring.style.strokeDasharray = circ;
+            ring.style.strokeDashoffset = circ;
+            requestAnimationFrame(() => {
+                ring.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.22, 1, 0.36, 1)';
+                ring.style.strokeDashoffset = offset;
+            });
+        });
+
+        document.querySelectorAll('.stat-card__ring-value').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            let current = 0;
+            const step = Math.max(target / 90, 0.5);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = Math.round(current);
+            }, 16);
+        });
+
+        // Overall progress
+        const totalDone = weeks.reduce((sum, w) => sum + w.lessons.filter(l => l.done).length, 0);
+        const totalAll = weeks.reduce((sum, w) => sum + w.lessons.length, 0);
+        const overallPct = Math.round((totalDone / totalAll) * 100);
+        const fill = document.getElementById('overallFill');
+        const pctEl = document.getElementById('overallPercent');
+        if (fill) fill.style.width = overallPct + '%';
+        if (pctEl) {
+            let c = 0;
+            const s = Math.max(overallPct / 90, 0.5);
+            const t = setInterval(() => {
+                c += s;
+                if (c >= overallPct) { c = overallPct; clearInterval(t); }
+                pctEl.textContent = Math.round(c) + '%';
+            }, 16);
+        }
+    }
+
+    // ===== STICKY NAVBAR =====
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        const curr = window.scrollY;
+        if (curr > 80) {
+            nav.classList.add('navbar--scrolled');
+        } else {
+            nav.classList.remove('navbar--scrolled');
+        }
+        lastScroll = curr;
+    });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('.navbar__link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.querySelectorAll('.navbar__link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+    </script>
+</body>
+</html>
