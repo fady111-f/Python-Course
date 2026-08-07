@@ -130,33 +130,50 @@ def show_status():
     print_banner()
     print("\n📊 PROGRESS METRICS DASHBOARD:\n")
 
-    watched_videos = 15
-    completed_weeks = 2
+    # Run progress sync first to update metrics
+    try:
+        from update_progress import run_sync, README_PATH
+        run_sync()
+    except Exception:
+        pass
+
+    # Read synced README
+    readme = Path(__file__).parent / "README.md"
+    watched_videos = 0
+    completed_weeks = 0
+    completed_topics = 0
+    if readme.exists():
+        text = readme.read_text(encoding="utf-8")
+        import re
+        parts = re.split(r'## 📝 Assignments', text)
+        lessons_sec = parts[0]
+        assign_sec = parts[1] if len(parts) > 1 else ""
+        
+        completed_videos = len(re.findall(r'\|\s*\d+\s*\|\s*✅\s*\|', lessons_sec))
+        completed_weeks = len(re.findall(r'<summary><strong>Week \d+</strong>[^\(]+\(\d+ lessons\) ✅ Completed</summary>', lessons_sec))
+        completed_topics = re.findall(r'\|\s*(✅|⬜)\s*\|.*?\|.*?\|.*?\|', assign_sec).count('✅')
+    else:
+        completed_videos = 0
+
     total_videos = 152
     total_weeks = 19
+    total_topics = 24
     total_lessons = len(list(LESSONS_DIR.glob("Week */*.py"))) if LESSONS_DIR.exists() else 0
-    total_assignments = len(list(ASSIGNMENTS_DIR.glob("*/*.py"))) if ASSIGNMENTS_DIR.exists() else 0
 
-    video_pct = round((watched_videos / total_videos) * 100)
+    video_pct = round((completed_videos / total_videos) * 100)
     week_pct = round((completed_weeks / total_weeks) * 100)
+    topic_pct = round((completed_topics / total_topics) * 100)
 
-    print(f"  • Videos Watched     : {watched_videos} / {total_videos} Videos ({video_pct}%)")
+    print(f"  • Videos Watched     : {completed_videos} / {total_videos} Videos ({video_pct}%)")
     print(f"  • Study Plan         : {completed_weeks} / {total_weeks} Weeks ({week_pct}%)")
     print(f"  • Video Lesson Files : {total_lessons} Python Scripts in Repo")
     print(f"  • Quiz Modules       : {len(QUIZZES)} Topic Quizzes Ready")
-    print(f"  • Solved Assignments : 0 / 113 Completed")
+    print(f"  • Solved Topics      : {completed_topics} / {total_topics} Topics ({topic_pct}%)")
 
     bar_filled = int(video_pct / 5)
     bar_empty = 20 - bar_filled
     print(f"\n  Progress: [{'=' * bar_filled}{'.' * bar_empty}] {video_pct}% Videos Watched")
     print("=" * 65)
-
-    # Sync README and Dashboard
-    try:
-        from update_progress import run_sync
-        run_sync()
-    except Exception:
-        pass
 
 
 def run_lesson(lesson_query: str):
